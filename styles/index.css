@@ -469,7 +469,43 @@ footer ul {
   padding: 7rem 0;
 }
 
+.first_sec{
+  background: #033F03;
+}
 
+.first_sec {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+padding: 1rem 11rem;
+}
+
+.questions{
+  display: flex;
+  margin: 3rem 0;
+}
+
+.first_sec span{
+  display: flex;
+  gap: 10px;
+  padding: 1.5rem 0;
+  align-items: center;
+}
+
+.first_sec #para{
+  line-height: 2.5rem;
+ padding: 1rem 0;
+}
+.first_sec a{
+
+  color: white;
+  text-decoration: underline;
+}
+
+.large{
+  background-color: #D9D9D9;
+}
 @media (max-width: 1120px) {
   nav {
     justify-content: center;
@@ -499,6 +535,9 @@ footer ul {
     line-height: 2rem;
   }
   
+  #last{
+    display: none;
+  }
   .flex{
     justify-content: center;
     padding: 2rem 0;
@@ -580,5 +619,13 @@ footer ul {
     gap: 10px;
   }
 
+ .first_sec{
+  padding: 0;
+  align-items: center;
+ }
+
+ #para{
+  text-align: center;
+ }
 
 }
