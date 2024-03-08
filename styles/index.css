@@ -121,7 +121,7 @@ button {
   width: 110px;
   z-index: 100;
 }
-section {
+.section {
   padding-top: 32px;
   padding-bottom: 32px;
   min-height: 40vh;
@@ -236,7 +236,6 @@ footer div {
 }
 h2,
 h3,
-h4,
 h5 {
   font-weight: 600;
   font-size: 2.6rem;
@@ -422,6 +421,55 @@ footer ul {
   cursor: pointer;
 }
 
+.Admission_process section img{
+  background: #033F03;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.Admission_process section{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.Admission_process .list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.Admission_process .list span{
+  margin: 2rem 0 0 0;
+}
+
+.Admission_process h1{
+  color: #033F03;
+  font-size: 1rem;
+  
+  line-height: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+
+#text-step p{
+  padding: 10px 0;
+  line-height: 2rem;
+}
+
+.list p{
+  line-height: 2rem;
+}
+
+.Admission_process{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 7rem 0;
+}
+
+
 @media (max-width: 1120px) {
   nav {
     justify-content: center;
@@ -454,6 +502,20 @@ footer ul {
   .flex{
     justify-content: center;
     padding: 2rem 0;
+  }
+
+  .Admission_process{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Admission_process section {
+    margin-top: 20px;
+  }
+
+  .list #text_ad{
+    text-align: center;
+    padding: 1rem 0;
   }
   
 }
