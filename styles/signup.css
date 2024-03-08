@@ -115,6 +115,11 @@ body {
   margin-top: 30px;
 }
 
+.login-button a{
+  text-decoration: none;
+  color: white;
+}
+
 .signup-button {
   padding: 10px;
   background-color: #0f470f;

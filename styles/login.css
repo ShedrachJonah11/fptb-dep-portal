@@ -15,6 +15,7 @@ body {
   padding: 20px;
 }
 
+
 .green-background {
   flex: 1;
   background-color: #0f470f;
@@ -123,6 +124,10 @@ body {
   border-radius: 10px;
   color: #fff;
   margin-top: 10px;
+}
+
+.login-button a{
+  color: white;
 }
 
 .signup-button {

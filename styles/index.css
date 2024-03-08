@@ -374,6 +374,54 @@ footer ul {
   width: 60px;
   height: 60px;
 }
+
+.Admmission_sec_text{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-left: 6rem;
+}
+
+.Admmission_sec{
+  background: #033F03;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+.Admmission_sec_text span h2{
+  font-size: 1.4rem;
+  color: white;
+  padding: 1rem;
+}
+
+.Admmission_sec_text p, h2{
+  font-weight: 200;
+  padding: 1rem;
+}
+
+.flex{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.flex button{
+  background-color: #FB3636;
+  padding: 0.8rem;
+  border-radius: 2px;
+  border: none;
+  color: white;
+}
+
+.flex p{
+  cursor: pointer;
+}
+
 @media (max-width: 1120px) {
   nav {
     justify-content: center;
@@ -390,6 +438,24 @@ footer ul {
   .card {
     max-width: 600px;
   }
+
+  .Admmission_sec{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  
+  .Admmission_sec_text{
+    margin-left: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 2rem;
+  }
+  
+  .flex{
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  
 }
 @media (max-width: 780px) {
   .hamburger,
@@ -451,4 +517,6 @@ footer ul {
     justify-content: center;
     gap: 10px;
   }
+
+
 }
