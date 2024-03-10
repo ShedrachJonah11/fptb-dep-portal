@@ -10,10 +10,10 @@
   font-family: "Unica One", sans-serif;
 }
 body {
-  background-image: url(../images//comp\ 1.png);
   background-repeat: no-repeat;
   background-size: 100% 75vh;
   background-blend-mode: overlay;
+  transition: background-image 1s ease; /* Add smooth transition */
 }
 
 .overlay {
