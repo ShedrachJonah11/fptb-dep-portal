@@ -373,7 +373,6 @@ footer ul {
   width: 60px;
   height: 60px;
 }
-
 .Admmission_sec_text{
   color: white;
   display: flex;
@@ -381,34 +380,27 @@ footer ul {
   padding: 2rem;
   margin-left: 6rem;
 }
-
 .Admmission_sec{
   background: #033F03;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-
-
-
 .Admmission_sec_text span h2{
   font-size: 1.4rem;
   color: white;
   padding: 1rem;
 }
-
 .Admmission_sec_text p, h2{
   font-weight: 200;
   padding: 1rem;
 }
-
 .flex{
   display: flex;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
 }
-
 .flex button{
   background-color: #FB3636;
   padding: 0.8rem;
@@ -416,63 +408,50 @@ footer ul {
   border: none;
   color: white;
 }
-
 .flex p{
   cursor: pointer;
 }
-
 .Admission_process section img{
   background: #033F03;
   padding: 10px;
   border-radius: 50%;
 }
-
 .Admission_process section{
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
 .Admission_process .list{
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
 .Admission_process .list span{
   margin: 2rem 0 0 0;
 }
-
 .Admission_process h1{
   color: #033F03;
-  font-size: 1rem;
-  
+  font-size: 1rem; 
   line-height: 2rem;
   font-weight: 600;
   font-size: 1.5rem;
 }
-
-
 #text-step p{
   padding: 10px 0;
   line-height: 2rem;
 }
-
 .list p{
   line-height: 2rem;
 }
-
 .Admission_process{
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 7rem 0;
 }
-
 .first_sec{
   background: #033F03;
 }
-
 .first_sec {
   color: white;
   display: flex;
@@ -480,32 +459,45 @@ footer ul {
   justify-content: center;
 padding: 1rem 11rem;
 }
-
 .questions{
   display: flex;
   margin: 3rem 0;
 }
-
 .first_sec span{
   display: flex;
   gap: 10px;
   padding: 1.5rem 0;
   align-items: center;
 }
-
 .first_sec #para{
   line-height: 2.5rem;
  padding: 1rem 0;
 }
 .first_sec a{
-
   color: white;
   text-decoration: underline;
 }
-
-.large{
-  background-color: #D9D9D9;
+.latest_events{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9rem;
+  padding: 3rem 0;
 }
+.large_img{
+  height: 35rem;
+  width: 40rem;
+}
+.small-img{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.small_2{
+  height: 16rem;
+  width: 18rem;
+}
+
 @media (max-width: 1120px) {
   nav {
     justify-content: center;
@@ -534,6 +526,20 @@ padding: 1rem 11rem;
     text-align: center;
     line-height: 2rem;
   }
+
+  .large_img{
+    height: 16rem;
+  width: 18rem;
+  }
+
+  #small{
+    height: 7rem;
+    width: 7rem;
+  }
+
+  .latest_events{
+    gap: 2rem;
+  }
   
   #last{
     display: none;
@@ -556,7 +562,22 @@ padding: 1rem 11rem;
     text-align: center;
     padding: 1rem 0;
   }
-  
+
+
+.first_sec{
+  padding: 0;
+}
+
+#para{
+  text-align: center;
+}
+
+.first_sec span{
+  display: flex;
+  justify-content: center;
+}
+
+
 }
 @media (max-width: 780px) {
   .hamburger,
@@ -590,6 +611,17 @@ padding: 1rem 11rem;
   .man {
     width: 100%;
   }
+
+  #small{
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .large_img{
+    height: 12rem;
+    width: 13rem;
+
+  }
 }
 @media (max-width: 450px) {
   .footer_container {
@@ -621,11 +653,11 @@ padding: 1rem 11rem;
 
  .first_sec{
   padding: 0;
-  align-items: center;
  }
 
  #para{
   text-align: center;
  }
+
 
 }
