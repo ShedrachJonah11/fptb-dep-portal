@@ -9,8 +9,8 @@ function shownav() {
 function hidenav() {
   nav.classList.remove("active_nav");
 }
-hamburger.addEventListener("click", shownav)
-close_btn.addEventListener("click",hidenav)
+hamburger.addEventListener("click", shownav);
+close_btn.addEventListener("click", hidenav);
 
 hamburger.addEventListener("click", shownav);
 close_btn.addEventListener("click", hidenav);
@@ -18,8 +18,8 @@ close_btn.addEventListener("click", hidenav);
 // Slider
 const images = [
   "url(../images/comp1.png)",
-  "url(../images/comp2.jpg)",
-  "url(../images/comp3.jpg)",
+  "url(../images/cs.jpeg)",
+  "url(../images/cs2.jpeg)",
 ];
 let index = 0;
 
