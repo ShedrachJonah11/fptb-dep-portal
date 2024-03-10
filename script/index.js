@@ -1,24 +1,32 @@
-const hamburger = document.querySelector(".hamburger_btn")
-const nav = document.querySelector("nav")
-const close_btn=document.querySelector(".close_btn")
+// hamburger
+const hamburger = document.querySelector(".hamburger_btn");
+const nav = document.querySelector("nav");
+const close_btn = document.querySelector(".close_btn");
 
 function shownav() {
-    nav.classList.add("active_nav")
+  nav.classList.add("active_nav");
 }
 function hidenav() {
-    nav.classList.remove("active_nav")
+  nav.classList.remove("active_nav");
 }
 hamburger.addEventListener("click", shownav)
 close_btn.addEventListener("click",hidenav)
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize Swiper
-    var swiper = new Swiper('#swiper-container', {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-});
+hamburger.addEventListener("click", shownav);
+close_btn.addEventListener("click", hidenav);
+
+// Slider
+const images = [
+  "url(../images/comp1.png)",
+  "url(../images/comp2.jpg)",
+  "url(../images/comp3.jpg)",
+];
+let index = 0;
+
+function changeBackground() {
+  document.body.style.backgroundImage = images[index];
+  index = (index + 1) % images.length;
+}
+
+// Change background every 5 seconds (adjust as needed)
+setInterval(changeBackground, 5000);
