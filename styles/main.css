@@ -38,7 +38,6 @@
   /*===== z index =====*/
   --z-fixed: 100;
 }
-
 @media screen and (min-width: 768px) {
   /*===== VARIABLES CSS =====*/
   :root {
@@ -71,6 +70,7 @@ body {
   background-color: var(--first-color-lighten);
   color: var(--text-color);
   line-height: 1.6;
+  background: #EBEBEB;
 }
 
 h1,
@@ -356,7 +356,134 @@ img {
 .course {
   display: none;
 }
-
+.v-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+}
+.v-nav div{
+  display: flex;
+  align-items: center;
+}
+#light{
+  font-weight: 400;
+  color: #000000;
+}
+#bell{
+  height: 2rem;
+}
+.pointer{
+  cursor: pointer;
+}
+.user_d {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+.user_d span{
+  line-height: 0.5;
+}
+.pd{
+  padding: 0.8rem;
+}
+.tabs{
+  margin: 0 8rem;
+}
+.tabs button{
+  border-radius: 2.5rem;
+  width: 15%;
+  border: none;
+}
+.active{
+  background: #033f03; 
+  color: white;
+  font-weight: 600;
+}
+.Completed{
+  background: whitesmoke;
+  color: black;
+  font-weight: 600;
+}
+.search input{
+  padding: 0.6rem;
+  margin: 1rem 8rem;
+  width: 35rem;
+  border: none;
+  border-radius: 5px;
+}
+.one section{
+  margin-left: 8.5rem;
+  border: 1px solid black;
+  padding: 0 1rem;
+  background: white;
+  width: 130%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+.wrapper{
+  display: flex;
+  gap: 23rem;
+}
+.one .first{
+  border-left: 12px solid #F76756;
+  border-radius: 1rem;
+}
+.one .second{
+  border-left: 12px solid  #2D5FC1;
+  border-radius: 1rem;
+}
+.one .third{
+  border-left: 12px solid #B9BD1B;
+  border-radius: 1rem;
+}
+.one{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+.box{
+  border: 1px solid #033f03;
+  height: 50vh; 
+  margin-left: -2.5rem;
+}
+.sec{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.bold{
+  background: #033f03;
+  margin: 0;
+  color: white;
+  padding: 0;
+}
+.text-box{
+  display: flex;
+  align-items: center;
+  border: 1px solid #033f03;
+  padding: 0 1.6rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+#tty{
+  margin: -1.5rem 0 0 0;
+}
+.text-box button{
+  padding: 0.8rem;
+  border-radius: 0.7rem;
+  background: #033f03;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  border: none;
+  margin: -2rem 0 0 0;
+}
 @media screen and (min-width: 768px) {
   .welcome-container {
     padding-left: 3em;
@@ -389,14 +516,52 @@ img {
     height: 12.6em;
     left: 60%;
   }
+  .v-nav{
+      margin: 0;
+      padding: 0 2rem;
+  }
+ .search input{
+  margin: 0 2rem;
+  width: 80%;
+ }
+ .search{
+  padding: 1rem 0;
+ }
+ .tabs button{
+  width: 20%;
+  margin: 1rem 2rem;
+ }
+ .tabs{
+  margin: 0;
+ }
+ .one section{  
+  margin: 0 2rem;
+  width: 95%;
+  display: flex;
+  align-items: center;
+ }
+.box{
+  margin: 0 2rem;
+  width: 94%;
+  align-items: start;
 }
-
+ .one{
+  gap: 3rem;
+  padding: 1rem 0;
+ }
+ .one section{
+  margin: 0;
+ }
+ .wrapper{
+ flex-direction: column;
+ gap: 1rem;
+ }
+}
 @media screen and (min-width: 1024px) {
   body {
     margin: 0;
     padding-left: var(--nav-width);
   }
-
   .section {
     padding-right: 2em;
     max-width: 950px;
@@ -413,6 +578,9 @@ img {
     position: absolute;
     left: 34%;
     padding-right: 20em;
+  }
+  .v-nav{
+    padding: 0 8rem;
   }
 
   .nav__menu {
@@ -445,7 +613,6 @@ img {
   .works__container {
     grid-template-columns: repeat(3, 1fr);
   }
-
   .grid {
     margin-left: auto;
     margin-right: auto;
@@ -472,7 +639,6 @@ img {
   .course h2 {
     font-size: 13.3px;
   }
-
   .course-content {
     box-shadow: 5.2109375px 5.2109375px 31.265625px 5.2109375px #00000014;
     padding: 1em;
@@ -484,5 +650,76 @@ img {
   .course-content p {
     font-size: 11.42px;
     line-height: 2;
+  }
+  .tabs button{
+    width: 23%;
+  }
+  .tabs{
+    margin: 0 6rem;
+  }
+  .search input{
+    margin-left: 8.5rem;
+    width: 70%;
+  }
+  .one section{
+    margin: 0 8rem;
+  }
+  .box{
+    width: 40%;
+  }
+  .wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+  }
+}
+@media screen and (min-width:600px) {
+  .v-nav{
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+    margin: 1rem 0 0 0;
+  }
+  .user_d{
+    gap: 0;
+    align-items: center;
+  }
+  .user_d span{
+    display: none;
+  }
+  #bell{
+    margin-top: -.6rem;
+  }
+  .search input{
+    width: 95%;
+    margin: 1rem 0.7rem;
+  }
+  .tabs{
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+  .tabs button {
+    width: 65%;
+    margin: 0;
+  }
+  .one section{
+    margin-left: 0.8rem;
+    width: 96%;
+  }
+  .wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .box{
+    margin: 0 auto;
+    padding: 0 0.5rem;
+  }
+  .sec{
+    font-size: 0.7rem;
+    padding: 0 0.1rem;
+    gap: 1rem;
   }
 }
