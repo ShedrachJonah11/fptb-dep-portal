@@ -181,4 +181,13 @@ body {
   .form-contain {
     width: 100%;
   }
+  .accRow {
+    margin-top: 100px;
+  }
+}
+
+@media only screen and (max-width: 987px) {
+  .green-background {
+    display: none;
+  }
 }
