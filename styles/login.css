@@ -10,6 +10,11 @@ body {
   width: 100%;
 }
 
+.badge {
+  width: 100px;
+  height: 90px;
+}
+
 .login-details {
   flex: 1;
   padding: 20px;
