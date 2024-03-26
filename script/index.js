@@ -30,3 +30,5 @@ function changeBackground() {
 
 // Change background every 5 seconds (adjust as needed)
 setInterval(changeBackground, 5000);
+
+

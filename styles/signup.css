@@ -99,10 +99,10 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
-  border-bottom: 1px solid #ccc; 
-  border-radius: 0; 
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
   background-color: transparent;
-  outline: none; 
+  outline: none;
 }
 
 .login-button {
@@ -113,9 +113,10 @@ body {
   border-radius: 10px;
   color: #fff;
   margin-top: 30px;
+  cursor: pointer;
 }
 
-.login-button a{
+.login-button a {
   text-decoration: none;
   color: white;
 }

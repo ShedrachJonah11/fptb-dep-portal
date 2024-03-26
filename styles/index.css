@@ -373,70 +373,71 @@ footer ul {
   width: 60px;
   height: 60px;
 }
-.Admmission_sec_text{
+.Admmission_sec_text {
   color: white;
   display: flex;
   flex-direction: column;
   padding: 2rem;
   margin-left: 6rem;
 }
-.Admmission_sec{
-  background: #033F03;
+.Admmission_sec {
+  background: #033f03;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 15rem;
 }
-.Admmission_sec_text span h2{
+.Admmission_sec_text span h2 {
   font-size: 1.4rem;
   color: white;
   padding: 1rem;
 }
 
-.cursor{
+.cursor {
   cursor: pointer;
 }
-.Admmission_sec_text p, h2{
+.Admmission_sec_text p,
+h2 {
   font-weight: 200;
   padding: 1rem;
 }
-.flex{
+.flex {
   display: flex;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
 }
-.flex button{
-  background-color: #FB3636;
+.flex button {
+  background-color: #fb3636;
   padding: 0.8rem;
   border-radius: 2px;
   border: none;
   color: white;
 }
-.flex p{
+.flex p {
   cursor: pointer;
 }
-.Admission_process section img{
-  background: #033F03;
+.Admission_process section img {
+  background: #033f03;
   padding: 10px;
   border-radius: 50%;
 }
-.Admission_process section{
+.Admission_process section {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
-.Admission_process .list{
+.Admission_process .list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.Admission_process .list span{
+.Admission_process .list span {
   margin: 2rem 0 0 0;
 }
-.Admission_process h1{
-  color: #033F03;
-  font-size: 1rem; 
+.Admission_process h1 {
+  color: #033f03;
+  font-size: 1rem;
   line-height: 2rem;
   font-weight: 600;
   font-size: 1.5rem;
@@ -444,63 +445,63 @@ footer ul {
   margin-left: 5rem;
 }
 
-.Admission_process #light{
+.Admission_process #light {
   font-weight: 500;
   font-size: 0.9rem;
 }
 
-#text-step p{
+#text-step p {
   padding: 10px 0;
   line-height: 2rem;
   width: 50vw;
 }
-.list p{
+.list p {
   line-height: 2rem;
 }
-.Admission_process{
+.Admission_process {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 7rem 0;
   gap: 5rem;
 }
-.first_sec{
-  background: #033F03;
+.first_sec {
+  background: #033f03;
   width: fit;
 }
 .first_sec {
   color: white;
   display: flex;
   flex-direction: column;
-padding: 1rem 11rem;
+  padding: 1rem 11rem;
 }
-.questions{
+.questions {
   display: flex;
   margin: 3rem 0;
 }
-#last{
+#last {
   width: 70vw;
 }
-.first_sec span{
+.first_sec span {
   display: flex;
   gap: 10px;
   padding: 1.5rem 0;
 }
-.first_sec #para{
+.first_sec #para {
   line-height: 2.5rem;
- padding: 1rem 0;
- text-align: left;
-}
-
-.q_lg{
+  padding: 1rem 0;
   text-align: left;
 }
-.first_sec a{
+
+.q_lg {
+  text-align: left;
+}
+.first_sec a {
   color: white;
   text-decoration: underline;
 }
 
-#text_ad{
+#text_ad {
   margin-left: 5rem;
 }
 .latest_events {
@@ -517,22 +518,22 @@ padding: 1rem 11rem;
 .small-img {
   display: flex;
   flex-direction: column;
-    gap: 3rem;
-    margin-top: 5.8rem;
+  gap: 3rem;
+  margin-top: 5.8rem;
 }
 .small_2 {
   height: 16rem;
   width: 18rem;
 }
-.About h5{
+.About h5 {
   font-size: 1rem;
   line-height: 1;
   font-weight: 700;
 }
-.About h4{
+.About h4 {
   font-weight: 600;
 }
-.About .text{
+.About .text {
   line-height: 3;
   display: flex;
   flex-direction: column;
@@ -540,33 +541,33 @@ padding: 1rem 11rem;
   margin-left: 7rem;
   margin-top: 5%;
 }
-.About img{
+.About img {
   height: fit-content;
 }
-.About p{
+.About p {
   width: 40vw;
 }
-.About{
+.About {
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin: 4rem 0;
 }
 
-.desp{
+.desp {
   display: flex;
   justify-content: space-between;
   padding: 5rem 8rem;
   align-items: center;
 }
 
-.desp section p{
+.desp section p {
   width: 17rem;
   margin: 0 auto;
   text-align: center;
 }
 
-.desp section h4{
+.desp section h4 {
   text-align: center;
 }
 
@@ -575,16 +576,15 @@ padding: 1rem 11rem;
     justify-content: center;
     gap: 40px;
   }
-  
-  .desp{
+
+  .desp {
     padding: 0;
     justify-content: space-between;
   }
 
-  .desp h2{
+  .desp h2 {
     font-size: 1.8rem;
   }
-
 }
 @media (max-width: 978px) {
   .card_container {
@@ -596,73 +596,73 @@ padding: 1rem 11rem;
   .card {
     max-width: 600px;
   }
-  .Admmission_sec{
+  .Admmission_sec {
     flex-direction: column-reverse;
     align-items: center;
-  }  
-  .Admmission_sec_text{
+  }
+  .Admmission_sec_text {
     margin-left: 0;
     padding: 0;
     text-align: center;
     line-height: 2rem;
   }
-  .large_img{
+  .large_img {
     height: 16rem;
-  width: 18rem;
+    width: 18rem;
   }
-  #small{
+  #small {
     height: 7rem;
     width: 7rem;
   }
-  .latest_events{
+  .latest_events {
     gap: 2rem;
   }
-  #last{
+  #last {
     display: none;
   }
-  .flex{
+  .flex {
     justify-content: center;
     padding: 2rem 0;
   }
-  .Admission_process{
+  .Admission_process {
     flex-direction: column;
     align-items: center;
   }
   .Admission_process section {
     margin-top: 20px;
   }
-  .q_lg{
+  .q_lg {
     text-align: center;
   }
-  .first_sec #para{
+  .first_sec #para {
     align-items: center;
     text-align: center;
   }
-.first_sec{
-  padding: 0;
-}
-#para{
-  text-align: center;
-}
-.first_sec span{
-  display: flex;
-  justify-content: center;
-}
-.Admission_process h1{
-  align-items: center;
-  text-align: center;
-  margin-left: 0;
-}
-.desp{
-  padding: 0;
-  margin: 0;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-}
-.desp h2{
-  font-size: 1.6rem;
-}
+  .first_sec {
+    padding: 0;
+  }
+  #para {
+    text-align: center;
+  }
+  .first_sec span {
+    display: flex;
+    justify-content: center;
+  }
+  .Admission_process h1 {
+    align-items: center;
+    text-align: center;
+    margin-left: 0;
+  }
+  .desp {
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  .desp h2 {
+    font-size: 1.6rem;
+  }
 }
 @media (max-width: 780px) {
   .hamburger,
@@ -676,14 +676,14 @@ padding: 1rem 11rem;
     gap: 25px;
   }
 
-  .description p{
+  .description p {
     line-height: 2rem;
   }
 
-  .description h2{
+  .description h2 {
     padding: 0;
   }
-  .Admmission_sec{
+  .Admmission_sec {
     gap: 5px;
   }
   .section_5 .description {
@@ -709,84 +709,84 @@ padding: 1rem 11rem;
     width: 100%;
   }
 
-  #small{
+  #small {
     height: 5rem;
     width: 5rem;
   }
 
-  .large_img{
+  .large_img {
     height: 12rem;
     width: 13rem;
   }
 
-  #text_ad{
+  #text_ad {
     margin-left: 0;
     width: fit-content;
     text-align: center;
   }
 
-  #text-step p{
+  #text-step p {
     width: fit-content;
   }
 
-  .About{
+  .About {
     flex-direction: column-reverse;
   }
-  .About p{
+  .About p {
     width: fit-content;
   }
-  .About .text{
+  .About .text {
     margin-left: 0;
     text-align: center;
   }
-  .desp p{
+  .desp p {
     font-size: 0.2rem;
   }
-  .desp h2{
+  .desp h2 {
     font-size: 0.5rem;
   }
-  .About span img{
+  .About span img {
     width: 30rem;
   }
-  #add_2{
+  #add_2 {
     width: 30rem;
   }
-  .desp{
+  .desp {
     justify-content: center;
     padding: 0;
     display: none;
   }
-  .desp section{
+  .desp section {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .latest_events{
+  .latest_events {
     display: flex;
     justify-content: center;
     gap: 0;
     padding: 0;
     margin: 0;
   }
-  .About{
+  .About {
     display: flex;
-  justify-content: center;
+    justify-content: center;
   }
-  .Admission_process{
+  .Admission_process {
     width: 100%;
     display: flex;
     align-items: center;
     margin: 0 auto;
   }
-  .small-img{
+  .small-img {
     height: 5rem;
     margin: 0;
     gap: 1rem;
     padding: 0;
   }
- 
-}@media (max-width: 450px) {
+}
+@media (max-width: 450px) {
   .footer_container {
     justify-content: space-evenly;
   }
@@ -796,10 +796,10 @@ padding: 1rem 11rem;
   .active_nav {
     width: 100%;
   }
-  .About span img{
+  .About span img {
     width: 23rem;
   }
-  #add_2{
+  #add_2 {
     width: 24rem;
   }
 
@@ -824,13 +824,11 @@ padding: 1rem 11rem;
     gap: 10px;
   }
 
- .first_sec{
-  padding: 0;
- }
+  .first_sec {
+    padding: 0;
+  }
 
- #para{
-  text-align: center;
- }
-
-
+  #para {
+    text-align: center;
+  }
 }

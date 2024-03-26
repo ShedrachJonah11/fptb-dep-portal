@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/signup.css">
+    <link rel="stylesheet" href="/styles/signup.css" />
     <title>Signup</title>
+    <script type="module" defer src="../signup.js"></script>
   </head>
   <body>
     <div class="container">
@@ -20,21 +21,38 @@
         </div>
       </div>
       <div class="login-details">
-        <!-- Your login details content goes here -->
         <form>
           <div class="form-contain">
             <h1>Sign Up</h1>
             <p>Enter your student details</p>
 
-            <input type="text" placeholder="Reg No." />
-            <input type="text" placeholder="Password" />
-            <input type="text" placeholder="Confirm Password" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter School Email."
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            <!-- <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+            /> -->
+            <div id="error-message" style="color: red"></div>
+            <!-- Error message container -->
 
-            <button type="button" class="login-button"> <a href="Dashboard.html">Sign up</a></button>
+            <button type="button" id="submit" class="login-button">
+              Sign up
+            </button>
             <div class="accRow">
               <h2>I have an account?</h2>
 
-              <button type="button" class="signup-button">
+              <button type="button" class="signup-button" >
                 <a href="/pages/login.html">Login</a>
               </button>
             </div>
