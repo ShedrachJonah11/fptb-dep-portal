@@ -109,6 +109,29 @@ body {
   outline: none;
 }
 
+.password-requirements {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #333;
+}
+
+.password-requirements ul {
+  list-style: none;
+  padding: 0;
+}
+
+.password-requirements li {
+  margin-bottom: 5px;
+}
+
+.password-requirements .valid {
+  color: #4caf50;
+}
+
+.password-requirements .invalid {
+  color: #f44336;
+}
+
 .login-button {
   width: 100%;
   border: none;
@@ -276,7 +299,7 @@ body {
   }
 
   .form-contain p {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .login-button {
@@ -290,8 +313,8 @@ body {
 
   .accRow {
     margin-top: 100px;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
   }
 
   .accRow h2 {

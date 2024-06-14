@@ -1,8 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -21,54 +18,74 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Function to show toast message
-function showToast(message, type) {
+// Password validation
+const passwordInput = document.getElementById("password");
+const lengthRequirement = document.getElementById("length");
+const uppercaseRequirement = document.getElementById("uppercase");
+const lowercaseRequirement = document.getElementById("lowercase");
+const numberRequirement = document.getElementById("number");
+const specialRequirement = document.getElementById("special");
+
+passwordInput.addEventListener("input", () => {
+  const value = passwordInput.value;
+  lengthRequirement.classList.toggle("valid", value.length >= 8);
+  lengthRequirement.classList.toggle("invalid", value.length < 8);
+
+  uppercaseRequirement.classList.toggle("valid", /[A-Z]/.test(value));
+  uppercaseRequirement.classList.toggle("invalid", !/[A-Z]/.test(value));
+
+  lowercaseRequirement.classList.toggle("valid", /[a-z]/.test(value));
+  lowercaseRequirement.classList.toggle("invalid", !/[a-z]/.test(value));
+
+  numberRequirement.classList.toggle("valid", /[0-9]/.test(value));
+  numberRequirement.classList.toggle("invalid", !/[0-9]/.test(value));
+
+  specialRequirement.classList.toggle(
+    "valid",
+    /[!@#$%^&*(),.?":{}|<>]/.test(value)
+  );
+  specialRequirement.classList.toggle(
+    "invalid",
+    !/[!@#$%^&*(),.?":{}|<>]/.test(value)
+  );
+});
+
+// Toast message
+const showToast = (message, type) => {
   const toastContainer = document.getElementById("toast-container");
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
-  toast.textContent = message;
+  toast.innerText = message;
   toastContainer.appendChild(toast);
-
-  // Show toast with animation
   setTimeout(() => {
     toast.classList.add("show");
   }, 100);
-
-  // Hide toast after 3 seconds
   setTimeout(() => {
     toast.classList.remove("show");
-    // Remove toast from DOM after transition
-    setTimeout(() => {
-      toastContainer.removeChild(toast);
-    }, 500);
-  }, 3000);
-}
+    toastContainer.removeChild(toast);
+  }, 4000);
+};
 
 // Submit button
 const submit = document.getElementById("submit");
+const loadingSpinner = document.getElementById("loading");
 submit.addEventListener("click", function (event) {
   event.preventDefault();
 
   // Input
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const loadingSpinner = document.getElementById("loading");
-
-  const auth = getAuth();
 
   // Show loading spinner
   loadingSpinner.style.display = "block";
 
+  const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed up
       const user = userCredential.user;
-      showToast("Account created successfully. Redirecting to Dashboard...", "success");
-
-      // Hide loading spinner
+      showToast("Account created successfully!", "success");
       loadingSpinner.style.display = "none";
-
-      // Redirect to Dashboard after a short delay
       setTimeout(() => {
         window.location.href = "Dashboard.html";
       }, 2000);
@@ -77,8 +94,6 @@ submit.addEventListener("click", function (event) {
       const errorCode = error.code;
       const errorMessage = error.message;
       showToast(errorMessage, "error");
-
-      // Hide loading spinner
       loadingSpinner.style.display = "none";
     });
 });

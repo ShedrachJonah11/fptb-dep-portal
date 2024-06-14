@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/signup.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <title>Signup</title>
     <script type="module" defer src="../signup.js"></script>
   </head>
@@ -28,24 +29,22 @@
             <h1>Sign Up</h1>
             <p>Enter your student details</p>
 
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter School Email."
-              required
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              required
-            />
+            <input type="email" id="email" placeholder="Enter School Email." required />
+            <input type="password" id="password" placeholder="Password" required />
+            <div id="password-requirements" class="password-requirements">
+              <p>Password must contain:</p>
+              <ul>
+                <li id="length" class="invalid">At least 8 characters</li>
+                <li id="uppercase" class="invalid">An uppercase letter</li>
+                <li id="lowercase" class="invalid">A lowercase letter</li>
+                <li id="number" class="invalid">A number</li>
+                <li id="special" class="invalid">A special character</li>
+              </ul>
+            </div>
             <div id="loading" class="loading-spinner" style="display: none;"></div>
             <!-- Loading spinner -->
 
-            <button type="button" id="submit" class="login-button">
-              Sign up
-            </button>
+            <button type="button" id="submit" class="login-button">Sign up</button>
             <div class="accRow">
               <h2>I have an account?</h2>
 
