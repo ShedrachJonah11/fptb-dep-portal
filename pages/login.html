@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/login.css" />
-    <title>Login</title>
-    <script type="module" defer src="../login.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="login-details">
-        <!-- Your login details content goes here -->
-        <form>
-          <div class="form-contain">
-            <img src="../images/badge.png" alt="logo" class="badge" />
-            <h1>Login</h1>
-            <p>Enter your student details</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/login.css" />
+  <title>Login</title>
+  <script type="module" defer src="../login.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="login-details">
+      <form>
+        <div class="form-contain">
+          <img src="../images/badge.png" alt="logo" class="badge" />
+          <h1>Login</h1>
+          <p>Enter your student details</p>
 
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter School Email."
-              required
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              required
-            />
-            <a href="#">Forgot Password?</a>
+          <input type="email" id="email" placeholder="Enter School Email." required />
+          <input type="password" id="password" placeholder="Password" required />
+          <a href="#">Forgot Password?</a>
 
-            <button type="button" id="submit" class="login-button">
-              Login
+          <button type="button" id="submit" class="login-button">Login</button>
+          <div class="accRow">
+            <h2>Don't have an account?</h2>
+            <button type="button" class="signup-button">
+              <a href="/pages/signup.html">Sign up</a>
             </button>
-            <div class="accRow">
-              <h2>Don't have an account?</h2>
-              <button type="button" class="signup-button">
-                <a href="/pages/signup.html">Sign up</a>
-              </button>
-            </div>
           </div>
-        </form>
+        </div>
+      </form>
+    </div>
+    <div class="green-background">
+      <img src="/images/bubble1.png" alt="" class="bubble2" />
+      <img src="/images/bubble2.png" alt="" class="bubble1" />
+      <div class="green-background-text">
+        <h1>Welcome to <span class="thin-text">student portal</span></h1>
+        <p>Login to access your account</p>
       </div>
-      <div class="green-background">
-        <img src="/images/bubble1.png" alt="" class="bubble2" />
-        <img src="/images/bubble2.png" alt="" class="bubble1" />
-        <div class="green-background-text">
-          <h1>Welcome to <span class="thin-text">student portal</span></h1>
-          <p>Login to access your account</p>
-        </div>
-        <div class="bg-contain">
-          <img src="/images/bg.png" alt="" class="bg" />
-        </div>
+      <div class="bg-contain">
+        <img src="/images/bg.png" alt="" class="bg" />
       </div>
     </div>
-  </body>
+  </div>
+
+  <!-- Toast message container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+  </div>
+</body>
 </html>

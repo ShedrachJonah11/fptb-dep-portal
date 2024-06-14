@@ -1,14 +1,10 @@
-// Import the functions you need from the SDKs you need
+// Initialize Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 import {
   getAuth,
   signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAOvjJvw7G_lrYlwxkFFSDOxji1IeqQ2zw",
   authDomain: "authentication-4bf9c.firebaseapp.com",
@@ -17,30 +13,58 @@ const firebaseConfig = {
   messagingSenderId: "26178407898",
   appId: "1:26178407898:web:475f505e40f724eed844e3",
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Submit button
 const submit = document.getElementById("submit");
-submit.addEventListener("click", function (event) {
+const loadingOverlay = document.getElementById("loading-overlay");
+
+submit.addEventListener("click", async function (event) {
   event.preventDefault();
 
-  // Input
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  // Show loading overlay
+  loadingOverlay.style.display = "flex";
+
   const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      alert("Loggin...");
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+    showToastMessage("success", "Login successful!"); // Show success toast
+    setTimeout(() => {
       window.location.href = "Dashboard.html";
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-    });
+    }, 2000); // Redirect after 2 seconds
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    showToastMessage("error", errorMessage); // Show error toast
+  } finally {
+    // Hide loading overlay regardless of success or failure
+    loadingOverlay.style.display = "none";
+  }
 });
+
+function showToastMessage(type, message) {
+  const toastContainer = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.classList.add("toast", type);
+  toast.innerText = message;
+
+  toastContainer.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  }, 3000); // Adjust timing as needed for toast display
+}
