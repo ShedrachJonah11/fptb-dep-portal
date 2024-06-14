@@ -50,7 +50,7 @@ passwordInput.addEventListener("input", () => {
   );
 });
 
-// Toast message
+// Toast message function
 const showToast = (message, type) => {
   const toastContainer = document.getElementById("toast-container");
   const toast = document.createElement("div");
@@ -66,34 +66,39 @@ const showToast = (message, type) => {
   }, 4000);
 };
 
-// Submit button
+// Submit button click event
 const submit = document.getElementById("submit");
-const loadingSpinner = document.getElementById("loading");
-submit.addEventListener("click", function (event) {
+const loadingOverlay = document.getElementById("loading-overlay");
+submit.addEventListener("click", async function (event) {
   event.preventDefault();
 
-  // Input
+  // Get email and password
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  // Show loading spinner
-  loadingSpinner.style.display = "block";
+  // Show loading overlay
+  loadingOverlay.style.display = "flex";
 
+  // Firebase authentication
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      showToast("Account created successfully!", "success");
-      loadingSpinner.style.display = "none";
-      setTimeout(() => {
-        window.location.href = "Dashboard.html";
-      }, 2000);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      showToast(errorMessage, "error");
-      loadingSpinner.style.display = "none";
-    });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    // Signed up successfully
+    const user = userCredential.user;
+    showToast("Account created successfully!", "success");
+    loadingOverlay.style.display = "none";
+    setTimeout(() => {
+      window.location.href = "Dashboard.html";
+    }, 2000);
+  } catch (error) {
+    // Handle errors
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    showToast(errorMessage, "error");
+    loadingOverlay.style.display = "none";
+  }
 });
