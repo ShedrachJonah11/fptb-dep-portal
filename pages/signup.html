@@ -40,13 +40,8 @@
               placeholder="Password"
               required
             />
-            <!-- <input
-              type="password"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-            /> -->
-            <div id="error-message" style="color: red"></div>
-            <!-- Error message container -->
+            <div id="loading" class="loading-spinner" style="display: none;"></div>
+            <!-- Loading spinner -->
 
             <button type="button" id="submit" class="login-button">
               Sign up
@@ -62,5 +57,7 @@
         </form>
       </div>
     </div>
+    <div id="toast-container" class="toast-container"></div>
+    <!-- Toast message container -->
   </body>
 </html>
