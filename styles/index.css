@@ -786,7 +786,7 @@ h2 {
     padding: 0;
   }
 }
-@media (max-width: 450px) {
+@media only screen and (max-width: 450px) {
   .footer_container {
     justify-content: space-evenly;
   }
@@ -796,9 +796,22 @@ h2 {
   .active_nav {
     width: 100%;
   }
-  .About span img {
-    width: 23rem;
-  }
+/* Container for the image */
+.About .image-container {
+  width: 23rem; /* or any width you want for the container */
+  height: auto; /* or set a specific height if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left; /* Float the container to the left */
+}
+
+/* Styling for the image itself */
+.About .image-container img {
+  width: 100%; /* Image will occupy the full width of the container */
+  height: auto; /* Keep the aspect ratio */
+  /* Remove display flex, and justify-content, align-items from here */
+}
   #add_2 {
     width: 24rem;
   }
@@ -807,7 +820,7 @@ h2 {
     display: none;
   }
 }
-@media (max-width: 400px) {
+@media only screen and (max-width: 400px) {
   .footer_container {
     flex-direction: column;
     align-items: center;
@@ -831,4 +844,7 @@ h2 {
   #para {
     text-align: center;
   }
+  
 }
+
+@media only screen and (max-width: 600px) {}
