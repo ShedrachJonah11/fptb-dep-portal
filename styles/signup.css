@@ -290,10 +290,6 @@ body {
     font-size: 12px;
   }
 
-  .login-button {
-    padding: 10px;
-    margin-top: 20px;
-  }
 
   .signup-button {
     width: 100px;
@@ -344,12 +340,6 @@ body {
   .form-contain p {
     font-size: 13px;
   }
-
-  .login-button {
-    padding: 12px;
-    margin-top: 25px;
-  }
-
   .signup-button {
     width: 120px;
   }
