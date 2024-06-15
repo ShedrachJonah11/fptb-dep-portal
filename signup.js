@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -20,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 
 // Password validation
 const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm-password");
 const lengthRequirement = document.getElementById("length");
 const uppercaseRequirement = document.getElementById("uppercase");
 const lowercaseRequirement = document.getElementById("lowercase");
@@ -72,9 +72,16 @@ const loadingOverlay = document.getElementById("loading-overlay");
 submit.addEventListener("click", async function (event) {
   event.preventDefault();
 
-  // Get email and password
+  // Get email, password, and confirm password
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    showToast("Passwords do not match!", "error");
+    return;
+  }
 
   // Show loading overlay
   loadingOverlay.style.display = "flex";
