@@ -34,8 +34,7 @@ body {
   color: #fff;
   font-size: 70px;
   font-weight: bold;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Poppins", sans-serif;
   position: relative;
   z-index: 2;
 }
@@ -48,7 +47,7 @@ body {
   color: #fff;
   font-weight: 500;
   font-size: 18px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: -30px;
 }
 
@@ -88,16 +87,17 @@ body {
 
 .form-contain a {
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
 }
 
 .form-contain h1 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   font-size: 40px;
 }
 
 .form-contain p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: -10px;
   font-weight: 400;
   font-size: 14px;
@@ -112,16 +112,18 @@ body {
   border-radius: 0;
   background-color: transparent;
   outline: none;
+  font-family: "Poppins", sans-serif;
 }
 
 .form-contain a {
   text-decoration: none;
   color: #000;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 0.9rem;
   margin-top: 10px;
   margin-bottom: 25px;
   font-weight: 400;
+  font-family: "Poppins", sans-serif;
 }
 
 .login-button {
@@ -133,17 +135,14 @@ body {
   color: #fff;
   margin-top: 10px;
   cursor: pointer;
-}
-
-.login-button a {
-  color: white;
+  font-family: "Poppins", sans-serif;
 }
 
 .login-button:hover {
   background-color: #0d3c0d;
 }
 
-.signup-button {
+.accRow .signup-button {
   display: inline-block;
   padding: 0.75rem;
   width: 100%;
@@ -157,6 +156,7 @@ body {
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+  font-family: "Poppins", sans-serif;
 }
 
 .signup-button:hover {
@@ -167,13 +167,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 160px;
 }
 
 .accRow h2 {
-  font-size: 17px;
+  font-size: 0.9rem;
   font-weight: 400;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .toast-container {
