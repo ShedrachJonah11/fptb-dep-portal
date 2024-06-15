@@ -139,16 +139,28 @@ body {
   color: white;
 }
 
-.signup-button {
-  padding: 10px;
-  background-color: #0f470f;
-  border: none;
-  border-radius: 10px;
-  width: 30%;
+.login-button:hover {
+  background-color: #0d3c0d;
 }
 
-.signup-button a {
-  color: #fff;
+.signup-button {
+  display: inline-block;
+  padding: 0.75rem;
+  width: 100%;
+  max-width: 150px;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #0f470f;
+  color: white;
+  font-size: 0.875rem;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.signup-button:hover {
+  background-color: #0d3c0d; /* Darken the button on hover */
 }
 
 .accRow {
@@ -220,10 +232,13 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
