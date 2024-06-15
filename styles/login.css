@@ -248,10 +248,16 @@ body {
 
   .login-details {
     flex: none;
+    /* width: 100%; */
+    padding: 10px;
+    overflow-y: auto;
+    height: 100vh;
   }
 
   .container {
     flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
   }
 
   .form-contain {
@@ -259,11 +265,18 @@ body {
   }
   .accRow {
     margin-top: 100px;
+    margin-bottom: 50px;
   }
 }
 
 @media only screen and (max-width: 987px) {
   .green-background {
     display: none;
+  }
+
+  .container {
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
   }
 }

@@ -4,7 +4,6 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  font-family: "Roboto", sans-serif;
 }
 
 .container {
@@ -359,6 +358,7 @@ body {
     margin-top: 100px;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 50px;
   }
 
   .accRow h2 {
