@@ -116,6 +116,7 @@ body {
   margin-top: 10px;
   font-size: 12px;
   color: #333;
+  font-family: "Poppins", sans-serif;
 }
 
 .password-requirements ul {
@@ -289,7 +290,6 @@ body {
   .form-contain p {
     font-size: 12px;
   }
-
 
   .signup-button {
     width: 100px;
