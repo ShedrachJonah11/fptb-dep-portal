@@ -71,6 +71,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   background: #ebebeb;
+  padding: 30px;
 }
 
 h1,
@@ -116,6 +117,7 @@ img {
   margin-right: var(--mb-2);
 }
 
+/* side Nav */
 .l-header {
   width: 100%;
   position: fixed;
@@ -225,57 +227,6 @@ img {
   height: 0.6em;
 }
 
-.search-container {
-  display: flex;
-}
-.search-bar {
-  width: 100%;
-  background-color: var(--first-color-lighten);
-  box-shadow: 5.2109375px 5.2109375px 31.265625px 5.2109375px #00000014;
-
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  column-gap: 3em;
-  border-radius: 60px;
-  padding: 5px 5px;
-}
-.search-bar input {
-  width: 50%;
-  background: transparent;
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 2px 2px;
-  font-size: xx-small;
-  margin-left: 1em;
-}
-.search-bar button img {
-  width: 20px;
-}
-.search-bar button {
-  border: 0;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-}
-.abdul {
-  display: flex;
-  column-gap: 0.7em;
-  align-items: center;
-}
-.abdul img {
-  height: 2em;
-}
-.abdul a {
-  font-size: 0.5rem;
-}
-.notification {
-  margin-bottom: 1em;
-}
-.notification img {
-  height: 2em;
-}
 /*=== Show menu ===*/
 .show {
   left: 0;
@@ -284,288 +235,43 @@ img {
 .welcome-section {
   position: relative;
   padding-bottom: 0;
+  margin-top: 3rem;
 }
 
 .welcome-container {
   background: linear-gradient(
     119.3deg,
-    #033f03 49.42%,
+    #033f03 60.42%,
     rgba(73, 113, 73, 0.673805) 102.42%,
-    rgba(217, 217, 217, 0) 152.54%
+    rgba(217, 217, 217, 0) 152.74%
   );
   color: var(--first-color-lighten);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1em;
+  padding: 2em;
   height: 225px;
   border-radius: 20px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .welcome-container h2 {
-  font-size: var(--h3-font-size);
-  font-weight: 250;
+  font-size: var(--h1-font-size);
+  font-weight: bold;
 }
 .welcome-container p {
-  font-size: xx-small;
-  font-weight: 200;
-  margin-bottom: 2em;
-}
-.welcome-cap {
-  height: 11.4em;
-  position: absolute;
-  top: 42%;
-  left: 50%;
-}
-.college {
-  display: none;
+  font-size: 12px;
+  font-weight: lighter;
+  margin-bottom: 10px;
 }
 
-.enroll-h2 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.enroll-h2 h3 {
-  font-size: 13.03px;
-  margin-bottom: 1em;
-}
-.enroll-grid {
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  border: 2px var(--first-color) solid;
-  border-radius: 15.63px;
-  margin-bottom: 1em;
-  background-color: #033f034d;
-  padding-top: 1em;
-  padding: 0;
-}
-.funda {
-  border: none;
-  padding-bottom: 0.4em;
-  padding-right: 0.9em;
-}
-.enroll-left p {
-  display: block;
-}
-.enroll-grid p {
-  font-size: 11.72px;
-  color: #033f03;
-}
-.enroll-grid input {
-  color: var(--first-color-lighten);
-  background-color: var(--first-color);
-  border-radius: 16.28px;
-  font-size: 11.72px;
-  border: none;
-  outline: none;
-  /* padding: 0.4em 2em; */
-}
-
-.course {
-  display: none;
-}
-.v-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4rem;
-}
-.v-nav div {
-  display: flex;
-  align-items: center;
-}
-#light {
-  font-weight: 400;
-  color: #000000;
-}
-#bell {
-  height: 2rem;
-}
-.pointer {
-  cursor: pointer;
-}
-.user_d {
-  display: flex;
-  gap: 4rem;
-  align-items: center;
-}
-.user_d span {
-  line-height: 0.5;
-}
-.pd {
-  padding: 0.8rem;
-}
-.tabs {
-  margin: 0 8rem;
-}
-.tabs button {
-  border-radius: 2.5rem;
-  width: 15%;
-  border: none;
-}
-.active {
-  background: #033f03;
-  color: white;
-  font-weight: 600;
-}
-.Completed {
-  background: whitesmoke;
-  color: black;
-  font-weight: 600;
-}
-.search input {
-  padding: 0.6rem;
-  margin: 1rem 8rem;
-  width: 35rem;
-  border: none;
-  border-radius: 5px;
-}
-.one section {
-  margin-left: 8.5rem;
-  border: 1px solid black;
-  padding: 0 1rem;
-  background: white;
-  width: 130%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-}
-.wrapper {
-  display: flex;
-  gap: 23rem;
-}
-.one .first {
-  border-left: 12px solid #f76756;
-  border-radius: 1rem;
-}
-.one .second {
-  border-left: 12px solid #2d5fc1;
-  border-radius: 1rem;
-}
-.one .third {
-  border-left: 12px solid #b9bd1b;
-  border-radius: 1rem;
-}
-.one {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 1rem 0;
-}
-.box {
-  border: 1px solid #033f03;
-  height: 50vh;
-  margin-left: -2.5rem;
-}
-.sec {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.bold {
-  background: #033f03;
-  margin: 0;
-  color: white;
-  padding: 0;
-}
-.text-box {
-  display: flex;
-  align-items: center;
-  border: 1px solid #033f03;
-  padding: 0 1.6rem;
-  border-radius: 1rem;
-  font-size: 0.9rem;
-  justify-content: center;
-  margin: 1rem 0;
-}
-#tty {
-  margin: -1.5rem 0 0 0;
-}
-.text-box button {
-  padding: 0.8rem;
-  border-radius: 0.7rem;
-  background: #033f03;
-  height: 2.4rem;
-  display: flex;
-  align-items: center;
-  color: white;
-  border: none;
-  margin: -2rem 0 0 0;
-}
 @media screen and (min-width: 768px) {
   .welcome-container {
     padding-left: 3em;
   }
-  .welcome-cap {
-    height: 20.4em;
-    position: absolute;
-    top: -8%;
-    left: 35%;
-  }
-  .enroll-gridd {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 1em;
-    column-gap: 2em;
-  }
-  .enroll-grid {
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 0.6em;
-  }
-  .funda {
-    padding-right: 2.7em;
-  }
-  .college {
-    display: block;
-  }
-  .college {
-    position: absolute;
-    height: 12.6em;
-    left: 60%;
-  }
-  .v-nav {
-    margin: 0;
-    padding: 0 2rem;
-  }
-  .search input {
-    margin: 0 2rem;
-    width: 80%;
-  }
-  .search {
-    padding: 1rem 0;
-  }
-  .tabs button {
-    width: 20%;
-    margin: 1rem 2rem;
-  }
-  .tabs {
-    margin: 0;
-  }
-  .one section {
-    margin: 0 2rem;
-    width: 95%;
-    display: flex;
-    align-items: center;
-  }
-  .box {
-    margin: 0 2rem;
-    width: 94%;
-    align-items: start;
-  }
-  .one {
-    gap: 3rem;
-    padding: 1rem 0;
-  }
-  .one section {
-    margin: 0;
-  }
-  .wrapper {
-    flex-direction: column;
-    gap: 1rem;
-  }
 }
+
 @media screen and (min-width: 1024px) {
   body {
     margin: 0;
@@ -588,147 +294,8 @@ img {
     left: 34%;
     padding-right: 20em;
   }
-  .v-nav {
-    padding: 0 8rem;
-  }
-
   .nav__menu {
     left: 0;
-    width: 26%;
-  }
-  .enroll-gridd {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 0em;
-    column-gap: 1em;
-  }
-  .enroll-grid {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-bottom: 0.6em;
-  }
-  .home__container {
-    height: 100vh;
-  }
-  .section {
-    padding: 3rem 0 1;
-  }
-
-  .bd-grid {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .services__container,
-  .works__container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .grid {
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    max-width: 950px;
-  }
-  .course {
-    display: block;
-  }
-  .course-img {
-    display: flex;
-  }
-  .course-img img {
-    height: 46.58px;
-    margin-bottom: 1em;
-  }
-  .course-h2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1em;
-  }
-  .course h2 {
-    font-size: 13.3px;
-  }
-  .course-content {
-    box-shadow: 5.2109375px 5.2109375px 31.265625px 5.2109375px #00000014;
-    padding: 1em;
-    border-radius: 15.63px;
-  }
-  .course-content h3 {
-    font-size: 14.42px;
-  }
-  .course-content p {
-    font-size: 11.42px;
-    line-height: 2;
-  }
-  .tabs button {
-    width: 23%;
-  }
-  .tabs {
-    margin: 0 6rem;
-  }
-  .search input {
-    margin-left: 8.5rem;
-    width: 70%;
-  }
-  .one section {
-    margin: 0 8rem;
-  }
-  .box {
-    width: 40%;
-  }
-  .wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 8rem;
-  }
-}
-@media screen and (min-width: 600px) {
-  .v-nav {
-    justify-content: space-between;
-    padding: 0 1rem;
-    align-items: center;
-    margin: 1rem 0 0 0;
-  }
-  .user_d {
-    gap: 0;
-    align-items: center;
-  }
-  .user_d span {
-    display: none;
-  }
-  #bell {
-    margin-top: -0.6rem;
-  }
-  .search input {
-    width: 95%;
-    margin: 1rem 0.7rem;
-  }
-  .tabs {
-    width: 70%;
-    display: flex;
-    margin: 0 auto;
-    gap: 1rem;
-  }
-  .tabs button {
-    width: 65%;
-    margin: 0;
-  }
-  .one section {
-    margin-left: 0.8rem;
-    width: 96%;
-  }
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .box {
-    margin: 0 auto;
-    padding: 0 0.5rem;
-  }
-  .sec {
-    font-size: 0.7rem;
-    padding: 0 0.1rem;
-    gap: 1rem;
+    width: 56%;
   }
 }
