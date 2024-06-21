@@ -1,9 +1,13 @@
-// signup.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,10 +17,15 @@ const firebaseConfig = {
   storageBucket: "authentication-4bf9c.appspot.com",
   messagingSenderId: "26178407898",
   appId: "1:26178407898:web:475f505e40f724eed844e3",
+  databaseURL: "https://authentication-4bf9c-default-rtdb.firebaseio.com/"
 };
 
 // Initialize Firebase
+console.log("Initializing Firebase...");
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
+console.log("Firebase initialized successfully.");
 
 // Password validation
 const passwordInput = document.getElementById("password");
@@ -77,6 +86,7 @@ submit.addEventListener("click", async function (event) {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
+  const name = document.getElementById("name").value;
 
   // Check if passwords match
   if (password !== confirmPassword) {
@@ -87,25 +97,29 @@ submit.addEventListener("click", async function (event) {
   // Show loading overlay
   loadingOverlay.style.display = "flex";
 
-  // Firebase authentication
-  const auth = getAuth();
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    // Signed up successfully
+    console.log("Creating user with email and password...");
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    console.log("User created successfully:", user);
+
+    // Save user data to the Realtime Database
+    const userRef = ref(database, 'users/' + user.uid);
+    await set(userRef, {
+      name: name,
+      email: email
+    });
+    console.log("User data saved to database successfully.");
+
     showToast("Account created successfully!", "success");
     loadingOverlay.style.display = "none";
     setTimeout(() => {
       window.location.href = "Dashboard.html";
     }, 2000);
   } catch (error) {
-    // Handle errors
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.error("Error creating user:", errorCode, errorMessage);
     showToast(errorMessage, "error");
     loadingOverlay.style.display = "none";
   }
