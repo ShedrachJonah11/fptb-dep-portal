@@ -263,17 +263,18 @@ img {
 .welcome-container h2 {
   font-size: var(--h1-font-size);
   font-weight: bold;
+  margin-top: 1.3em;
 }
 
 .welcome-container p {
   font-size: 12px;
-  font-weight: lighter;
-  margin-bottom: 10px;
+  font-weight: 300;
+  margin-bottom: 20px;
 }
 
 .welcome-container .welcome-image {
   flex-shrink: 0;
-  max-height: 100%;
+  max-height: 140%;
   margin-left: 20px;
 }
 
@@ -284,6 +285,7 @@ img {
   .welcome-container {
     flex-direction: column;
     align-items: flex-start;
+    padding: 2em;
   }
 
   .welcome-container .welcome-image {
