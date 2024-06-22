@@ -38,7 +38,11 @@ const updateWelcomeMessage = async (user) => {
       console.log("User data:", userData); // Check if userData is fetched correctly
 
       if (userData && userData.name) {
-        welcomeMessage.textContent = `Welcome back, ${userData.name}!`;
+        // Split the full name to extract the first name
+        const fullName = userData.name;
+        const firstName = fullName.split(" ")[0]; // Assume full name is space-separated
+
+        welcomeMessage.textContent = `Welcome back, ${firstName}!`;
       } else {
         welcomeMessage.textContent = `Welcome back!`;
       }
