@@ -293,6 +293,25 @@ img {
   }
 
   .nav__menu {
+    width: 52% !important;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .welcome-section {
+    margin-top: auto;
+  }
+  .welcome-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2em;
+  }
+
+  .welcome-container .welcome-image {
+    display: none;
+  }
+
+  .nav__menu {
     width: 50% !important;
   }
 }
@@ -302,16 +321,17 @@ img {
     margin: 0;
     padding-left: var(--nav-width);
   }
+
   .nav__toggle,
   .nav__logo,
   .nav__close {
     display: none;
   }
+
   .nav {
     position: absolute;
-    left: 34%;
-    padding-right: 20em;
   }
+
   .nav__menu {
     left: 0;
     width: 56%;
