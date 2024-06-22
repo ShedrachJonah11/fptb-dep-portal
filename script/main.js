@@ -27,6 +27,7 @@ const database = getDatabase(app);
 
 // DOM elements
 const welcomeMessage = document.getElementById("welcome-message");
+const userNameElement = document.getElementById("user-name");
 
 const updateWelcomeMessage = async (user) => {
   if (user) {
@@ -43,6 +44,7 @@ const updateWelcomeMessage = async (user) => {
         const firstName = fullName.split(" ")[0]; // Assume full name is space-separated
 
         welcomeMessage.textContent = `Welcome back, ${firstName}!`;
+        userNameElement.textContent = fullName; // Update the user name element
       } else {
         welcomeMessage.textContent = `Welcome back!`;
       }
