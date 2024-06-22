@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebas
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 import {
   getDatabase,
@@ -28,6 +29,7 @@ const database = getDatabase(app);
 // DOM elements
 const welcomeMessage = document.getElementById("welcome-message");
 const userNameElement = document.getElementById("user-name");
+const logoutLink = document.getElementById("logout");
 
 const updateWelcomeMessage = async (user) => {
   if (user) {
@@ -66,6 +68,20 @@ onAuthStateChanged(auth, (user) => {
     // No user is signed in
     console.log("No user is signed in.");
     updateWelcomeMessage(null);
+  }
+});
+
+// Logout functionality
+logoutLink.addEventListener("click", async (event) => {
+  event.preventDefault();
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully.");
+    // Optionally, redirect to the login page or show a message
+    window.location.href = "login.html"; // Redirect to login page
+  } catch (error) {
+    console.error("Error signing out:", error.message);
+    // Handle error as needed
   }
 });
 
