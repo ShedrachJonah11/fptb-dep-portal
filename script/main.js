@@ -8,6 +8,7 @@ import {
   getDatabase,
   ref,
   get,
+  child,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -30,6 +31,8 @@ const database = getDatabase(app);
 const welcomeMessage = document.getElementById("welcome-message");
 const userNameElement = document.getElementById("user-name");
 const logoutLink = document.getElementById("logout");
+const coursesContainer = document.getElementById("courses-container");
+const notificationsContainer = document.getElementById("notifications-container");
 
 const updateWelcomeMessage = async (user) => {
   if (user) {
@@ -41,33 +44,93 @@ const updateWelcomeMessage = async (user) => {
       console.log("User data:", userData); // Check if userData is fetched correctly
 
       if (userData && userData.name) {
-        // Split the full name to extract the first name
         const fullName = userData.name;
-        const firstName = fullName.split(" ")[0]; // Assume full name is space-separated
-
+        const firstName = fullName.split(" ")[0];
         welcomeMessage.textContent = `Welcome back, ${firstName}!`;
-        userNameElement.textContent = fullName; // Update the user name element
+        userNameElement.textContent = fullName;
       } else {
         welcomeMessage.textContent = `Welcome back!`;
       }
     } catch (error) {
       console.error("Error fetching user data:", error.message);
-      // Handle error as needed
     }
   } else {
     welcomeMessage.textContent = `Welcome!`;
   }
 };
 
+const fetchAndDisplayCourses = async () => {
+  try {
+    const coursesRef = ref(database, 'courses');
+    const snapshot = await get(coursesRef);
+    const courses = snapshot.val();
+
+    coursesContainer.innerHTML = ''; // Clear previous content
+
+    if (courses) {
+      Object.keys(courses).forEach((courseId) => {
+        const course = courses[courseId];
+        const courseCard = document.createElement('div');
+        courseCard.className = 'card-container';
+        courseCard.innerHTML = `
+          <div class="text">
+            <p>${course.name}</p>
+            <button>View</button>
+          </div>
+          <img src="../images/PC.png" alt="">
+        `;
+        coursesContainer.appendChild(courseCard);
+      });
+    } else {
+      coursesContainer.innerHTML = '<p>No available courses</p>';
+    }
+  } catch (error) {
+    console.error('Error fetching courses:', error.message);
+    coursesContainer.innerHTML = '<p>Error loading courses</p>';
+  }
+};
+
+const fetchAndDisplayNotifications = async () => {
+  try {
+    const notificationsRef = ref(database, 'notifications');
+    const snapshot = await get(notificationsRef);
+    const notifications = snapshot.val();
+
+    notificationsContainer.innerHTML = ''; // Clear previous content
+
+    if (notifications) {
+      Object.keys(notifications).forEach((notificationId) => {
+        const notification = notifications[notificationId];
+        const notificationCard = document.createElement('div');
+        notificationCard.innerHTML = `
+          <span>
+            <h3>${notification.title}</h3>
+            <p>${notification.message}</p>
+            <p class="see-more">See more</p>
+          </span>
+        `;
+        notificationsContainer.appendChild(notificationCard);
+      });
+    } else {
+      notificationsContainer.innerHTML = '<p>No available notifications</p>';
+    }
+  } catch (error) {
+    console.error('Error fetching notifications:', error.message);
+    notificationsContainer.innerHTML = '<p>Error loading notifications</p>';
+  }
+};
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in
     console.log("User is signed in:", user);
     updateWelcomeMessage(user);
+    fetchAndDisplayCourses();
+    fetchAndDisplayNotifications();
   } else {
-    // No user is signed in
     console.log("No user is signed in.");
     updateWelcomeMessage(null);
+    coursesContainer.innerHTML = '<p>No available courses</p>';
+    notificationsContainer.innerHTML = '<p>No available notifications</p>';
   }
 });
 
@@ -77,11 +140,9 @@ logoutLink.addEventListener("click", async (event) => {
   try {
     await signOut(auth);
     console.log("User signed out successfully.");
-    // Optionally, redirect to the login page or show a message
-    window.location.href = "login.html"; // Redirect to login page
+    window.location.href = "login.html";
   } catch (error) {
     console.error("Error signing out:", error.message);
-    // Handle error as needed
   }
 });
 
