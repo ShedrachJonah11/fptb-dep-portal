@@ -71,7 +71,7 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   background: #ebebeb;
-  padding: 30px;
+  padding: 15px;
 }
 
 h1,
@@ -323,42 +323,41 @@ img {
   margin-left: 20px;
 }
 
-.see-all{
+.see-all {
   color: var(--first-color);
   cursor: pointer;
 }
 
-.second-sec{
+.second-sec {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  margin-top: var(--mb-2);
+  /* padding: 1rem; */
+  margin-top: var(--mb-5);
 }
 
-.enrolled-courses{
+.enrolled-courses {
   width: 50rem;
 }
 
-.second-sec .side{
+.second-sec .side {
   max-width: 30rem;
 }
 
-.top-text{
+.top-text {
   display: flex;
   justify-content: space-between;
   padding: 0.8rem 0;
 }
 
-.card-container{
+.card-container {
   border: 3px solid var(--first-color);
- 
 }
 
-.card-container p{
+.card-container p {
   max-width: 10rem;
 }
 
-.cards button{
+.cards button {
   background-color: var(--first-color);
   padding: 0.4rem;
   width: 6rem;
@@ -368,13 +367,13 @@ img {
   cursor: pointer;
 }
 
-.card-container .text{
+.card-container .text {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
-.card-container{
+.card-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -383,55 +382,53 @@ img {
   background-color: #033f034f;
 }
 
-.card-container img{
+.card-container img {
   height: 6rem;
 }
 
-.cards{
+.cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.1rem;
 }
 
-.images{
+.images {
   display: flex;
   gap: 1.5rem;
-
 }
 
-.side{
+.side {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.side .notification{
+.side .notification {
   display: flex;
   justify-content: space-between;
 }
 
-.side .textCard{
+.side .textCard {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 18rem;
+  max-width: 24rem;
   background-color: white;
   border-radius: 1rem;
   padding: 1rem;
-
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.311);
 }
 
-.side .textCard p{
+.side .textCard p {
   line-height: 1.4rem;
   color: #00000059;
 }
 
-.side .textCard{
+.side .textCard {
   font-size: var(--smaller-font-size);
 }
 
-.side .textCard .see-more{
+.side .textCard .see-more {
   color: var(--first-color);
   font-weight: var(--font-semi-bold);
   cursor: pointer;
@@ -449,15 +446,17 @@ img {
   .notification-icon {
     font-size: 1.2rem;
   }
-  .top-nav{
+  .top-nav {
     gap: 0;
   }
-  
+  .second-sec {
+    margin-top: 5px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .welcome-section {
-    margin-top: auto;
+    margin-top: 10px;
   }
   .welcome-container {
     flex-direction: column;
@@ -467,7 +466,7 @@ img {
 
   .welcome-container .welcome-image {
     display: none;
-  } 
+  }
 
   .nav__menu {
     width: 52% !important;
@@ -477,14 +476,13 @@ img {
     width: 40%;
   }
 
-  .cards{
+  .cards {
     grid-template-columns: repeat(1, 1fr);
   }
 
- .side{
-  display: none;
- }
- 
+  .side {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -504,31 +502,30 @@ img {
   .nav__menu {
     width: 50% !important;
   }
-  
-  .card-container p{
+
+  .card-container p {
     font-size: var(--smaller-font-size);
   }
 
-  .card-container img{
+  .card-container img {
     height: 4rem;
   }
 
-  .second-sec{
+  .second-sec {
     gap: 1.8rem;
   }
 
-  .textCard{
+  .textCard {
     width: 14rem;
   }
-  .cards{
+  .cards {
     gap: 1rem;
   }
-  .enrolled-courses{
+  .enrolled-courses {
     width: 32rem;
   }
-  .textCard{
+  .textCard {
     width: fit-content;
-    
   }
 }
 
@@ -553,14 +550,10 @@ img {
     width: 56%;
   }
 
-  .enrolled-courses{
-    width: 42rem;
-  }
-
-  .card-container p{
+  .card-container p {
     font-size: var(--smaller-font-size);
   }
-  .second-sec{
+  .second-sec {
     gap: 3rem;
   }
 }
