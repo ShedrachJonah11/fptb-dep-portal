@@ -44,9 +44,9 @@
 
       <main class="main-content">
         <header>
-          <div>
+          <div class="head-row">
             <h2>Courses</h2>
-            <button>Add Course</button>
+            <button id="openModalButton">Add Course</button>
           </div>
 
           <button class="hamburger" id="hamburger">
@@ -55,8 +55,89 @@
             <span class="bar"></span>
           </button>
         </header>
+
+        <div class="users-table">
+          <h3>Users</h3>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>CODE</th>
+                  <th>NAME</th>
+                  <th>CREDIT</th>
+                  <th>STUDENT</th>
+                </tr>
+              </thead>
+              <tbody id="coursesTableBody">
+                <tr>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>
+                    <div class="action-button">...</div>
+                    <div class="modal-menu">
+                      <ul>
+                        <li class="modal-edit-user">Edit Course</li>
+                        <li class="modal-delete-user">Delete Course</li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Courses</h2>
+            <form id="addCourseForm">
+              <label for="courseName">Name</label>
+              <input
+                type="text"
+                id="courseName"
+                name="courseName"
+                placeholder="Enter Name"
+                required
+              />
+
+              <label for="courseCode">Code</label>
+              <input
+                type="text"
+                id="courseCode"
+                name="courseCode"
+                placeholder="Enter Code"
+                required
+              />
+
+              <label for="courseCredit">Credit</label>
+              <input
+                type="number"
+                id="courseCredit"
+                name="courseCredit"
+                placeholder="Enter Credit"
+                required
+              />
+
+              <label for="courseStudents">Number of Students</label>
+              <input
+                type="number"
+                id="courseStudents"
+                name="courseStudents"
+                placeholder="Enter Students"
+                required
+              />
+
+              <button type="submit">Create</button>
+              <button type="button" class="cancel">Cancel</button>
+            </form>
+          </div>
+        </div>
       </main>
     </div>
-    <script type="module" src="/adminDashboard.js"></script>
+    <script type="module" src="/adminCourses.js"></script>
   </body>
 </html>

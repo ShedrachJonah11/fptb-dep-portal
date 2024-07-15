@@ -9,6 +9,8 @@ import {
   get,
   set,
   push,
+  update,
+  remove,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -48,11 +50,9 @@ function showToast(message, type) {
 
 // Combined DOMContentLoaded listener
 document.addEventListener("DOMContentLoaded", () => {
-  // Sidebar logic if applicable
   const hamburger = document.getElementById("hamburger");
   const sidebar = document.querySelector(".sidebar");
   const manageUsersButton = document.getElementById("manage-users");
-  const addCourseButton = document.getElementById("add-course");
   const loadingOverlay = document.getElementById("loading-overlay");
 
   hamburger?.addEventListener("click", () => {
@@ -62,23 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       const userRef = ref(database, `users/${user.uid}`);
-      get(userRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const userData = snapshot.val();
-          document.getElementById("adminName").textContent = userData.name || "No name available";
-          document.getElementById("adminEmail").textContent = user.email || "No email available";
-        } else {
-          showToast("Could not retrieve user details.", "error");
-        }
-      }).catch((error) => {
-        console.error(error);
-        showToast("Error fetching user details.", "error");
-      });
+      get(userRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            document.getElementById("adminName").textContent =
+              userData.name || "No name available";
+            document.getElementById("adminEmail").textContent =
+              user.email || "No email available";
+          } else {
+            showToast("Could not retrieve user details.", "error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          showToast("Error fetching user details.", "error");
+        });
     } else {
       showToast("No user logged in", "error");
     }
   });
-  // Manage Users Event Listener
+
   manageUsersButton?.addEventListener("click", async () => {
     loadingOverlay.style.display = "flex";
     try {
@@ -93,25 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add Course Event Listener
-  addCourseButton?.addEventListener("click", async () => {
-    const courseName = prompt("Enter course name:");
-    if (courseName) {
-      loadingOverlay.style.display = "flex";
-      try {
-        const coursesRef = ref(database, "courses");
-        const newCourseRef = push(coursesRef);
-        await set(newCourseRef, { name: courseName });
-        showToast("Course added successfully!", "success");
-      } catch (error) {
-        showToast(error.message, "error");
-      } finally {
-        loadingOverlay.style.display = "none";
-      }
-    }
-  });
-
-  // Logic for toggling modal-menus
   document.querySelectorAll(".action-button").forEach((button) => {
     button.addEventListener("click", function (event) {
       event.stopPropagation();
@@ -124,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Hide modal menus when clicked elsewhere on the document
   document.addEventListener(
     "click",
     (event) => {
