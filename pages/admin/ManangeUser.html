@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage User</title>
+    <link rel="stylesheet" href="/styles/admin-manageuser.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img src="/images/svg/Frame 47.svg" alt="Logo" />
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="/pages/admin/adminDashboard.html">Dashboard</a></li>
+            <li>
+              <a href="/pages/admin/Courses.html">Courses</a>
+            </li>
+            <li>
+              <a href="#" class="active">Manage Users</a>
+            </li>
+            <li><a href="/pages/admin/Notification.html">Notifications</a></li>
+            <li><a href="/pages/admin/Assignment.html">Assignment</a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="sidebar-actions">
+            <a href="#">Log out</a>
+            <a href="#">Support</a>
+          </div>
+          <div class="user-info">
+            <img src="/images/Display Picture.svg" alt="User" />
+            <div>
+              <p id="adminName">Loading...</p>
+              <p id="adminEmail">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <script type="module" src="/adminDashboard.js"></script>
+  </body>
+</html>
