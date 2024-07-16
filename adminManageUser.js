@@ -1,4 +1,4 @@
-// Admin dashboard
+// Manage User
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -73,7 +73,7 @@ async function displayUsers() {
             <div class="modal-menu">
               <ul>
                 <li class="modal-edit-user">Edit User</li>
-                <li class="modal-delete-user" >Delete User</li>
+                <li class="modal-delete-user">Delete User</li>
               </ul>
             </div>
           </td>
@@ -109,50 +109,7 @@ function attachActionButtonsEventListeners() {
   });
 }
 
-// Function to fetch counts and update the dashboard
-async function updateDashboardCounts() {
-  try {
-    const coursesRef = ref(database, "courses");
-    const assignmentsRef = ref(database, "assignments");
-    const notificationsRef = ref(database, "notifications");
-
-    const [coursesSnapshot, assignmentsSnapshot, notificationsSnapshot] =
-      await Promise.all([
-        get(coursesRef),
-        get(assignmentsRef),
-        get(notificationsRef),
-      ]);
-
-    const coursesCount = coursesSnapshot.exists()
-      ? Object.keys(coursesSnapshot.val()).length
-      : 0;
-    const assignmentsCount = assignmentsSnapshot.exists()
-      ? Object.keys(assignmentsSnapshot.val()).length
-      : 0;
-    const notificationsCount = notificationsSnapshot.exists()
-      ? Object.keys(notificationsSnapshot.val()).length
-      : 0;
-
-    document.querySelector(".courses-item h3").textContent = coursesCount;
-    document.querySelector(".assignments-item h3").textContent =
-      assignmentsCount;
-    document.querySelector(".notifications-item h3").textContent =
-      notificationsCount;
-  } catch (error) {
-    console.error("Error fetching counts:", error);
-    showToast("Error fetching dashboard data.", "error");
-  }
-}
-
-// Combined DOMContentLoaded listener
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const sidebar = document.querySelector(".sidebar");
-
-  hamburger?.addEventListener("click", () => {
-    sidebar.classList.toggle("show");
-  });
-
   auth.onAuthStateChanged((user) => {
     if (user) {
       const userRef = ref(database, `users/${user.uid}`);
@@ -177,33 +134,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".action-button").forEach((button) => {
-    button.addEventListener("click", function (event) {
-      event.stopPropagation();
-      const modalMenu = this.nextElementSibling;
-      const isVisible = modalMenu.style.display === "block";
-      document.querySelectorAll(".modal-menu").forEach((menu) => {
-        menu.style.display = "none";
-      });
-      modalMenu.style.display = isVisible ? "none" : "block";
-    });
-  });
-
-  document.addEventListener(
-    "click",
-    (event) => {
-      const isActionButton = event.target.closest(".action-button");
-      const isMenuItem = !isActionButton && event.target.closest(".modal-menu");
-      if (!isMenuItem) {
-        document.querySelectorAll(".modal-menu").forEach((menu) => {
-          menu.style.display = "none";
-        });
-      }
-    },
-    true
-  );
-
   displayUsers();
-  // Update dashboard counts on page load
-  updateDashboardCounts();
 });

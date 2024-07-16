@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -45,7 +45,59 @@
           </div>
         </div>
       </aside>
+
+      <main class="main-content">
+        <header>
+          <h2>Manage User</h2>
+          <button class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </header>
+
+        <div class="users-table">
+          <h3>Users</h3>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <td>Reg No.</td>
+                  <th>Full Name</th>
+                  <th>Current Class</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>Loading...</td>
+                  <td>
+                    <div class="action-button">...</div>
+                    <div class="modal-menu">
+                      <ul>
+                        <li class="modal-edit-user">Edit User</li>
+                        <li class="modal-delete-user">Delete User</li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Repeat rows as necessary -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
-    <script type="module" src="/adminDashboard.js"></script>
+    <div id="toast-container"></div>
+    <div id="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+    <script type="module" src="/adminManageUser.js"></script>
   </body>
 </html>
