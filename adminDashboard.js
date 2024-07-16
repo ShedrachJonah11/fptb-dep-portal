@@ -7,10 +7,6 @@ import {
   getDatabase,
   ref,
   get,
-  set,
-  push,
-  update,
-  remove,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -45,6 +41,32 @@ function showToast(message, type) {
         toast.remove();
       }, 300);
     }, 3000);
+  }
+}
+
+// Function to fetch counts and update the dashboard
+async function updateDashboardCounts() {
+  try {
+    const coursesRef = ref(database, "courses");
+    const assignmentsRef = ref(database, "assignments");
+    const notificationsRef = ref(database, "notifications");
+
+    const [coursesSnapshot, assignmentsSnapshot, notificationsSnapshot] = await Promise.all([
+      get(coursesRef),
+      get(assignmentsRef),
+      get(notificationsRef),
+    ]);
+
+    const coursesCount = coursesSnapshot.exists() ? Object.keys(coursesSnapshot.val()).length : 0;
+    const assignmentsCount = assignmentsSnapshot.exists() ? Object.keys(assignmentsSnapshot.val()).length : 0;
+    const notificationsCount = notificationsSnapshot.exists() ? Object.keys(notificationsSnapshot.val()).length : 0;
+
+    document.querySelector(".courses-item h3").textContent = coursesCount;
+    document.querySelector(".assignments-item h3").textContent = assignmentsCount;
+    document.querySelector(".notifications-item h3").textContent = notificationsCount;
+  } catch (error) {
+    console.error("Error fetching counts:", error);
+    showToast("Error fetching dashboard data.", "error");
   }
 }
 
@@ -122,4 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     true
   );
+
+  // Update dashboard counts on page load
+  updateDashboardCounts();
 });
