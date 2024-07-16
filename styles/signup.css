@@ -4,6 +4,7 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -19,12 +20,16 @@ body {
 .login-details {
   flex: 1;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .green-background {
   flex: 1;
   background-color: #0f470f;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .green-background-text {
@@ -33,12 +38,10 @@ body {
 
 .green-background h1 {
   color: #fff;
-  font-size: 4.1rem;
+  font-size: 4rem;
   font-weight: 700;
   position: relative;
   z-index: 2;
-  font-family: "Poppins", sans-serif;
-  height: 100%;
 }
 
 .thin-text {
@@ -50,13 +53,12 @@ body {
   font-weight: 500;
   font-size: 18px;
   margin-top: -30px;
-  font-family: "Poppins", sans-serif;
 }
 
 .bubble1 {
   position: absolute;
   top: 30%;
-  right: 0%;
+  right: 0;
   width: 150px;
 }
 
@@ -80,33 +82,36 @@ body {
 }
 
 .form-contain {
-  width: 55%;
-  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
   display: flex;
-  margin: 50px;
-  margin-top: 130px;
+  flex-direction: column;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-contain h1 {
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .form-contain p {
   margin-top: -10px;
   font-weight: 500;
   font-size: 14px;
-  font-family: "Poppins", sans-serif;
 }
 
-.form-contain input {
+.form-contain input,
+.form-contain select {
   margin-top: 15px;
   margin-bottom: 10px;
   padding: 10px;
   border: none;
   border-bottom: 1px solid #ccc;
-  border-radius: 0;
   background-color: transparent;
   outline: none;
   font-family: "Poppins", sans-serif;
@@ -116,7 +121,6 @@ body {
   margin-top: 10px;
   font-size: 12px;
   color: #333;
-  font-family: "Poppins", sans-serif;
 }
 
 .password-requirements ul {
@@ -147,51 +151,36 @@ body {
   cursor: pointer;
 }
 
-.login-button a {
-  text-decoration: none;
-  color: white;
-  font-family: "Poppins", sans-serif;
-}
-
-.login-button:hover {
-  background-color: #0d3c0d;
-}
-
 .signup-button {
   display: inline-block;
   padding: 0.75rem;
-  width: 100%;
-  max-width: 150px;
   margin-top: 1rem;
   border: none;
   border-radius: 10px;
   background-color: #0f470f;
   color: #fff;
-  font-size: 0.875rem;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
 }
 
-.signup-button:hover {
-  background-color: #0d3c0d; /* Darken the button on hover */
+.signup-button:hover,
+.login-button:hover {
+  background-color: #0d3c0d;
 }
 
 .accRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 .accRow h2 {
   font-size: 17px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
 }
 
-/* Toast messages */
 .toast-container {
   position: fixed;
   top: 20px;
@@ -231,6 +220,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
@@ -256,49 +246,26 @@ body {
   }
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
   .green-background {
     display: none;
   }
 
-  .login-details {
-    flex: none;
-    width: 100%;
-    padding: 10px;
-    overflow-y: auto;
-    height: 100vh;
-  }
-
-  .container {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    overflow-y: auto;
-  }
-
   .form-contain {
-    width: 100%;
-    margin-top: 50px;
-    margin: auto;
-  }
-
-  .form-contain h1 {
-    font-size: 30px;
-  }
-
-  .form-contain p {
-    font-size: 12px;
-  }
-
-  .signup-button {
-    width: 100px;
+    padding: 15px;
+    margin-top: 20px;
   }
 
   .accRow {
-    margin-top: 50px;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .signup-button {
+    width: 100%;
+    max-width: 150px;
   }
 
   .accRow h2 {
@@ -306,49 +273,19 @@ body {
   }
 }
 
-/* Small devices (tablets, 768px and down) */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
   .green-background {
     display: none;
   }
 
-  .login-details {
-    flex: none;
-    width: 90%;
-    padding: 15px;
-    overflow-y: auto;
-    height: 100vh;
-  }
-
-  .container {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    overflow-y: auto;
-  }
-
   .form-contain {
-    width: 100%;
-    margin-top: 100px;
-    margin: auto;
-  }
-
-  .form-contain h1 {
-    font-size: 35px;
-  }
-
-  .form-contain p {
-    font-size: 13px;
-  }
-  .signup-button {
-    width: 120px;
+    padding: 10px;
   }
 
   .accRow {
-    margin-top: 100px;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
   }
 
   .accRow h2 {

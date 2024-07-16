@@ -1,103 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/signup.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
     <title>Signup</title>
     <script type="module" defer src="../signup.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="green-background">
-        <img src="/images/bubble1.png" alt="" class="bubble2" />
-        <img src="/images/bubble2.png" alt="" class="bubble1" />
-        <div class="green-background-text">
-          <h1>Welcome to <span class="thin-text">student portal</span></h1>
-          <p>Login to access your account</p>
-        </div>
-        <div class="bg-contain">
-          <img src="/images/bg.png" alt="" class="bg" />
-        </div>
-      </div>
-      <div class="login-details">
-        <form id="signup-form">
-          <div class="form-contain">
-            <img src="../images/badge.png" alt="logo" class="badge" />
-
-            <h1>Sign Up</h1>
-            <p>Enter your student details</p>
-
-            <input type="text" id="name" placeholder="Full Name" required />
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter School Email."
-              required
-            />
-            <input type="text" id="reg-no" placeholder="Registration Number" required />
-            <select id="current-class" required>
-              <option value="" disabled selected>Select Current Class</option>
-              <option value="nd1">ND1</option>
-              <option value="nd2">ND2</option>
-              <option value="hnd1">HND1</option>
-              <option value="hnd2">HND2</option>
-            </select>
-            <input type="tel" id="contact" placeholder="Phone Number" required />
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm Password"
-              required
-            />
-            <div id="password-requirements" class="password-requirements">
-              <p>Password must contain:</p>
-              <ul>
-                <li id="length" class="invalid">At least 8 characters</li>
-                <li id="uppercase" class="invalid">An uppercase letter</li>
-                <li id="lowercase" class="invalid">A lowercase letter</li>
-                <li id="number" class="invalid">A number</li>
-                <li id="special" class="invalid">A special character</li>
-              </ul>
+        <div class="green-background">
+            <img src="/images/bubble1.png" alt="" class="bubble2" />
+            <img src="/images/bubble2.png" alt="" class="bubble1" />
+            <div class="green-background-text">
+                <h1>Welcome to <span class="thin-text">student portal</span></h1>
+                <p>Login to access your account</p>
             </div>
-
-            <button type="button" id="submit" class="login-button">
-              Sign up
-            </button>
-            <div class="accRow">
-              <h2>I have an account?</h2>
-
-              <a href="/pages/login.html" class="signup-button">Login</a>
+            <div class="bg-contain">
+                <img src="/images/bg.png" alt="" class="bg" />
             </div>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="login-details">
+            <form id="signup-form">
+                <div class="form-contain">
+                    <img src="../images/badge.png" alt="logo" class="badge" />
+                    <h1>Sign Up</h1>
+                    <p>Enter your student details</p>
+                    <input type="text" id="name" placeholder="Full Name" required />
+                    <input type="email" id="email" placeholder="Enter School Email." required />
+                    <input type="text" id="reg-no" placeholder="Registration Number" required />
+                    <select id="current-class" required>
+                        <option value="" disabled selected>Select Current Class</option>
+                        <option value="nd1">ND1</option>
+                        <option value="nd2">ND2</option>
+                        <option value="hnd1">HND1</option>
+                        <option value="hnd2">HND2</option>
+                    </select>
+                    <input type="tel" id="contact" placeholder="Phone Number" required />
+                    <input type="password" id="password" placeholder="Password" required />
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+                    <div id="password-requirements" class="password-requirements">
+                        <p>Password must contain:</p>
+                        <ul>
+                            <li id="length" class="invalid">At least 8 characters</li>
+                            <li id="uppercase" class="invalid">An uppercase letter</li>
+                            <li id="lowercase" class="invalid">A lowercase letter</li>
+                            <li id="number" class="invalid">A number</li>
+                            <li id="special" class="invalid">A special character</li>
+                        </ul>
+                    </div>
+                    <button type="button" id="submit" class="login-button">Sign up</button>
+                    <div class="accRow">
+                        <h2>I have an account?</h2>
+                        <a href="/pages/login.html" class="signup-button">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div id="toast-container" class="toast-container"></div>
-    <!-- Toast message container -->
-
-    <!-- Loading overlay -->
     <div id="loading-overlay" class="loading-overlay">
-      <div class="loading-spinner"></div>
+        <div class="loading-spinner"></div>
     </div>
-  </body>
+</body>
 </html>
