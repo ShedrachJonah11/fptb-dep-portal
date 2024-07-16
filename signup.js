@@ -1,4 +1,3 @@
-// signup up
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -83,11 +82,14 @@ const loadingOverlay = document.getElementById("loading-overlay");
 submit.addEventListener("click", async function (event) {
   event.preventDefault();
 
-  // Get email, password, and confirm password
+  // Get input values
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
   const name = document.getElementById("name").value;
+  const regNo = document.getElementById("reg-no").value;
+  const currentClass = document.getElementById("current-class").value;
+  const contact = document.getElementById("contact").value;
 
   // Check if passwords match
   if (password !== confirmPassword) {
@@ -113,6 +115,9 @@ submit.addEventListener("click", async function (event) {
     await set(userRef, {
       name: name,
       email: email,
+      regNo: regNo,
+      currentClass: currentClass,
+      contact: contact,
     });
     console.log("User data saved to database successfully.");
 

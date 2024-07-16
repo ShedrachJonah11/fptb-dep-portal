@@ -8,10 +8,8 @@ import {
   getDatabase,
   ref,
   get,
-  child,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAOvjJvw7G_lrYlwxkFFSDOxji1IeqQ2zw",
   authDomain: "authentication-4bf9c.firebaseapp.com",
@@ -22,19 +20,21 @@ const firebaseConfig = {
   databaseURL: "https://authentication-4bf9c-default-rtdb.firebaseio.com/",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-// DOM elements
 const welcomeMessage = document.getElementById("welcome-message");
 const userNameElement = document.getElementById("user-name");
+const userClassElement = document.getElementById("user-class");
 const logoutLink = document.getElementById("logout");
 const coursesContainer = document.getElementById("courses-container");
+const seeAllCourses = document.getElementById("see-all-courses");
 const notificationsContainer = document.getElementById(
   "notifications-container"
 );
+
+let allCourses = [];
 
 const updateWelcomeMessage = async (user) => {
   if (user) {
@@ -43,13 +43,14 @@ const updateWelcomeMessage = async (user) => {
       const snapshot = await get(userRef);
       const userData = snapshot.val();
 
-      console.log("User data:", userData); // Check if userData is fetched correctly
+      console.log("User data:", userData); 
 
-      if (userData && userData.name) {
+      if (userData) {
         const fullName = userData.name;
         const firstName = fullName.split(" ")[0];
         welcomeMessage.textContent = `Welcome back, ${firstName}!`;
         userNameElement.textContent = fullName;
+        userClassElement.textContent = userData.class || "Class not set";
       } else {
         welcomeMessage.textContent = `Welcome back!`;
       }
@@ -61,29 +62,38 @@ const updateWelcomeMessage = async (user) => {
   }
 };
 
+const displayCourses = (courses, limit) => {
+  coursesContainer.innerHTML = ""; 
+  const coursesToDisplay = limit ? courses.slice(0, limit) : courses;
+
+  coursesToDisplay.forEach((course) => {
+    const courseCard = document.createElement("div");
+    courseCard.className = "card-container";
+    courseCard.innerHTML = `
+      <div class="text">
+        <p>${course.code}</p>
+        <p>${course.name}</p>
+        <button>View</button>
+      </div>
+      <img src="../images/PC.png" alt="">
+    `;
+    coursesContainer.appendChild(courseCard);
+  });
+};
+
 const fetchAndDisplayCourses = async () => {
   try {
     const coursesRef = ref(database, "courses");
     const snapshot = await get(coursesRef);
     const courses = snapshot.val();
 
-    coursesContainer.innerHTML = ""; // Clear previous content
+    allCourses = [];
 
     if (courses) {
       Object.keys(courses).forEach((courseId) => {
-        const course = courses[courseId];
-        const courseCard = document.createElement("div");
-        courseCard.className = "card-container";
-        courseCard.innerHTML = `
-          <div class="text">
-          <p>${course.code}</p>
-            <p>${course.name}</p>
-            <button>View</button>
-          </div>
-          <img src="../images/PC.png" alt="">
-        `;
-        coursesContainer.appendChild(courseCard);
+        allCourses.push(courses[courseId]);
       });
+      displayCourses(allCourses, 4);
     } else {
       coursesContainer.innerHTML = "<p>No available courses</p>";
     }
@@ -92,7 +102,6 @@ const fetchAndDisplayCourses = async () => {
     coursesContainer.innerHTML = "<p>Error loading courses</p>";
   }
 };
-
 const fetchAndDisplayNotifications = async () => {
   try {
     const notificationsRef = ref(database, "notifications");
