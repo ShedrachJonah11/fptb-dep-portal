@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="/styles/dashboard.css" />
+    <link rel="stylesheet" href="/styles/assignment.css" />
     <!-- ===== BOX ICONS ===== -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -20,7 +20,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"></script>
     <script src="/script/main.js" type="module"></script>
-    <title>Dashboard</title>
+    <title>Assignment</title>
   </head>
   <body>
     <!--===== HEADER =====-->
@@ -61,67 +61,7 @@
             <a href="#" id="logout">Logout</a>
           </div>
         </div>
-
-        <div class="top-nav">
-          <input type="text" class="search-bar" placeholder="Search" />
-          <div class="profile-info">
-            <img
-              src="/images/profile-image.svg"
-              alt="Profile Image"
-              class="profile-img"
-            />
-
-            <div class="profile-text">
-              <p id="user-name">Loading...</p>
-              <p id="user-class">Loading class...</p>
-            </div>
-          </div>
-          <div class="notification-icon">
-            <i class="bx bx-bell"></i>
-          </div>
-        </div>
       </nav>
     </header>
-
-    <main>
-      <section class="welcome-section">
-        <div class="welcome-container">
-          <div class="welcome-text">
-            <p>January 22, 2024</p>
-            <h2 id="welcome-message">Loading...</h2>
-            <p>Always stay updated in your student's portal.</p>
-          </div>
-          <img
-            src="/images/Group 19.png"
-            alt="welcome-img"
-            class="welcome-image"
-          />
-        </div>
-      </section>
-
-      <section class="second-sec">
-        <div class="enrolled-courses">
-          <span class="top-text">
-            <h3>Enrolled Courses</h3>
-            <a href="/pages/Courses.html" class="see-all">See all</a>
-          </span>
-          <div id="courses-container" class="cards">
-            <!-- Course cards will be dynamically added here -->
-          </div>
-        </div>
-        <div class="side">
-          <div class="notification">
-            <p>Notification</p>
-            <a href="/pages/Notice.html">See all</a>
-          </div>
-          <div id="notifications-container" class="textCard">
-            <!-- Notifications will be dynamically added here -->
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!--===== MAIN JS =====-->
-    <script src="/script/main.js"></script>
   </body>
 </html>

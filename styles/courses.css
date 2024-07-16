@@ -1,0 +1,263 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@250;500;600;700&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --header-height: 3rem;
+  --nav-width: 324px;
+
+  /*===== Font weight =====*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /*===== Colors =====*/
+  --first-color: #033f03;
+  --second-color: linear-gradient(0deg, #033f03, #033f03),
+    linear-gradient(0deg, rgba(3, 63, 3, 0.3), rgba(3, 63, 3, 0.3));
+  --first-color-light: #eae7e6;
+  --first-color-lighten: #fffafa;
+
+  /*===== Font and typography =====*/
+  --body-font: "Poppins", san-serif;
+  --first-font: "Source Sans Pro";
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.815rem;
+  --smaller-font-size: 0.75rem;
+
+  /*===== Margenes =====*/
+  --mb-1: 0.5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+@media screen and (min-width: 768px) {
+  /*===== VARIABLES CSS =====*/
+  :root {
+    /*===== Font and typography =====*/
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  background-color: var(--first-color-lighten);
+  color: var(--text-color);
+  line-height: 1.6;
+  background: #ebebeb;
+  padding: 15px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h3 {
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*===== CLASS CSS ===== */
+.section {
+  padding: 2rem 1rem;
+}
+
+/*===== LAYOUT =====*/
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 100%;
+  column-gap: 2rem;
+  width: calc(100% - 2rem);
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
+}
+
+/* side Nav */
+.l-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--first-color-lighten);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.green {
+  color: var(--first-color);
+}
+/*===== NAV =====*/
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1rem;
+}
+.nav__menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 95%;
+  margin-top: 1em;
+  margin-left: 1em;
+  border-radius: 2em;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(
+    0deg,
+    #033f03 80.26%,
+    rgba(146, 95, 226, 0) 143.39%,
+    #e2d4f7 143.39%
+  );
+  transition: 0.5s;
+}
+.nav__menu {
+  width: 15% !important;
+}
+
+.nav__list {
+  margin-top: 3em;
+}
+
+.nav-top img {
+  height: 8em;
+}
+
+.nav__bottom {
+  margin-top: auto; /* Pushes the nav__bottom to the bottom */
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+  position: absolute; /* Makes the element position at the bottom of the parent */
+  bottom: 2rem; /* Adjust as needed */
+}
+.nav__bottom img {
+  height: 2em;
+}
+
+.nav__bottom a {
+  font-size: var(--small-font-size);
+  color: var(--first-color-light);
+}
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--first-color-light);
+  cursor: pointer;
+}
+
+
+.nav__item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  margin-bottom: 2.5em;
+}
+
+.nav__item img {
+  height: 1.5em;
+}
+
+.nav__link {
+  font-size: var(--normal-font-size);
+  color: grey;
+  transition: 0.3s;
+}
+
+.nav__link:hover {
+  color: white;
+}
+
+.nav__toggle {
+  color: var(--first-color-dark);
+  font-size: 2.3rem;
+  cursor: pointer;
+}
+.nav__toggle img {
+  height: 0.6em;
+}
+
+@media screen and (max-width: 768px) {
+  .nav__menu {
+    width: 52% !important;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .nav__menu {
+    width: 50% !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    margin: 0;
+    padding-left: var(--nav-width);
+  }
+
+  .nav__toggle,
+  .nav__logo,
+  .nav__close {
+    display: none;
+  }
+
+  .nav {
+    position: absolute;
+  }
+
+  .nav__menu {
+    left: 0;
+    width: 56%;
+  }
+}
