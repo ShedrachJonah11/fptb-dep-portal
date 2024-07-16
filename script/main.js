@@ -43,14 +43,14 @@ const updateWelcomeMessage = async (user) => {
       const snapshot = await get(userRef);
       const userData = snapshot.val();
 
-      console.log("User data:", userData); 
+      console.log("User data:", userData);
 
       if (userData) {
         const fullName = userData.name;
         const firstName = fullName.split(" ")[0];
         welcomeMessage.textContent = `Welcome back, ${firstName}!`;
         userNameElement.textContent = fullName;
-        userClassElement.textContent = userData.class || "Class not set";
+        userClassElement.textContent = userData.currentClass || "Class not set";
       } else {
         welcomeMessage.textContent = `Welcome back!`;
       }
@@ -63,7 +63,7 @@ const updateWelcomeMessage = async (user) => {
 };
 
 const displayCourses = (courses, limit) => {
-  coursesContainer.innerHTML = ""; 
+  coursesContainer.innerHTML = "";
   const coursesToDisplay = limit ? courses.slice(0, limit) : courses;
 
   coursesToDisplay.forEach((course) => {
@@ -81,27 +81,56 @@ const displayCourses = (courses, limit) => {
   });
 };
 
-const fetchAndDisplayCourses = async () => {
+const fetchAndDisplayCourses = async (userClass) => {
+  if (!userClass) {
+    coursesContainer.innerHTML = "<p>Please specify a class.</p>";
+    return;
+  }
+
   try {
-    const coursesRef = ref(database, "courses");
-    const snapshot = await get(coursesRef);
-    const courses = snapshot.val();
+    // Replace 'courses' with the correct path to the classes in your database structure
+    const classCoursesRef = ref(database, `classes/${userClass}/courses`);
+    const snapshot = await get(classCoursesRef);
+    const courseIds = snapshot.val(); // This should be an object with course IDs as keys if courses are set as true
 
-    allCourses = [];
-
-    if (courses) {
-      Object.keys(courses).forEach((courseId) => {
-        allCourses.push(courses[courseId]);
-      });
-      displayCourses(allCourses, 4);
+    if (courseIds) {
+      allCourses = [];
+      for (const courseId in courseIds) {
+        // Now, get the details for each course by its ID
+        const courseSnapshot = await get(ref(database, `courses/${courseId}`));
+        if (courseSnapshot.exists()) {
+          const courseDetails = courseSnapshot.val();
+          allCourses.push({
+            ...courseDetails, // Spread the course details
+            id: courseId, // Add the course ID in case you need to reference it
+          });
+        }
+      }
+      displayCourses(allCourses, 4); // Update to display limited courses
     } else {
-      coursesContainer.innerHTML = "<p>No available courses</p>";
+      coursesContainer.innerHTML =
+        "<p>No courses available for this class.</p>";
     }
   } catch (error) {
-    console.error("Error fetching courses:", error.message);
-    coursesContainer.innerHTML = "<p>Error loading courses</p>";
+    console.error("Error fetching class courses:", error.message);
+    coursesContainer.innerHTML = "<p>Error loading courses for the class.</p>";
   }
 };
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("User is signed in:", user);
+    updateWelcomeMessage(user).then(() => {
+      // Assuming the user's class has been updated in updateWelcomeMessage, fetch and display courses for user's class
+      userClassElement.textContent &&
+        fetchAndDisplayCourses(userClassElement.textContent);
+    });
+    fetchAndDisplayNotifications();
+  } else {
+    // Handle no user signed in case
+  }
+});
+
 const fetchAndDisplayNotifications = async () => {
   try {
     const notificationsRef = ref(database, "notifications");

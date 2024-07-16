@@ -161,10 +161,6 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
-.users-table th {
-  background-color: #f4f4f4;
-}
-
 .users-table tbody tr:hover {
   background-color: #f9f9f9;
 }

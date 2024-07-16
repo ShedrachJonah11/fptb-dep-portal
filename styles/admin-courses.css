@@ -251,6 +251,39 @@ body {
   background-color: #006600;
 }
 
+.modal-content form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-appearance: none; 
+     -moz-appearance: none; 
+          appearance: none; 
+}
+
+.select-wrapper {
+  position: relative;
+  display: block;
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000;
+  pointer-events: none; 
+}
+
+/* Wrap the select tag in a div with a class name of select-wrapper */
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .dashboard-container {

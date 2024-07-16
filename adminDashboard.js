@@ -44,6 +44,70 @@ function showToast(message, type) {
   }
 }
 
+// Function to fetch and display users
+async function displayUsers() {
+  const usersRef = ref(database, "users");
+  const loadingOverlay = document.getElementById("loading-overlay");
+  loadingOverlay.style.display = "flex";
+
+  try {
+    const snapshot = await get(usersRef);
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+      const usersTableBody = document.querySelector(".users-table tbody");
+      usersTableBody.innerHTML = ""; // Clear current table rows
+
+      // Generate new table rows
+      Object.keys(users).forEach((userId) => {
+        const user = users[userId];
+        const tableRow = document.createElement("tr");
+        tableRow.innerHTML = `
+          <td>${user.regNo || "N/A"}</td>
+          <td>${user.fullName || "N/A"}</td>
+          <td>${user.currentClass || "N/A"}</td>
+          <td>${user.email || "N/A"}</td>
+          <td>${user.contact || "N/A"}</td>
+          <td>
+            <div class="action-button">...</div>
+            <div class="modal-menu">
+              <ul>
+                <li class="modal-edit-user">Edit User</li>
+                <li class="modal-delete-user" >Delete User</li>
+              </ul>
+            </div>
+          </td>
+        `;
+        usersTableBody.appendChild(tableRow);
+      });
+
+      // Attach click event listeners to action buttons
+      attachActionButtonsEventListeners();
+    } else {
+      showToast("No users found", "error");
+    }
+  } catch (error) {
+    showToast("Error fetching user data: " + error.message, "error");
+  } finally {
+    loadingOverlay.style.display = "none";
+  }
+}
+
+// Function to attach click event listeners to action buttons
+function attachActionButtonsEventListeners() {
+  const actionButtons = document.querySelectorAll(".action-button");
+  actionButtons.forEach((button) => {
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const modalMenu = this.nextElementSibling;
+      const isVisible = modalMenu.style.display === "block";
+      document.querySelectorAll(".modal-menu").forEach((menu) => {
+        menu.style.display = "none";
+      });
+      modalMenu.style.display = isVisible ? "none" : "block";
+    });
+  });
+}
+
 // Function to fetch counts and update the dashboard
 async function updateDashboardCounts() {
   try {
@@ -51,19 +115,28 @@ async function updateDashboardCounts() {
     const assignmentsRef = ref(database, "assignments");
     const notificationsRef = ref(database, "notifications");
 
-    const [coursesSnapshot, assignmentsSnapshot, notificationsSnapshot] = await Promise.all([
-      get(coursesRef),
-      get(assignmentsRef),
-      get(notificationsRef),
-    ]);
+    const [coursesSnapshot, assignmentsSnapshot, notificationsSnapshot] =
+      await Promise.all([
+        get(coursesRef),
+        get(assignmentsRef),
+        get(notificationsRef),
+      ]);
 
-    const coursesCount = coursesSnapshot.exists() ? Object.keys(coursesSnapshot.val()).length : 0;
-    const assignmentsCount = assignmentsSnapshot.exists() ? Object.keys(assignmentsSnapshot.val()).length : 0;
-    const notificationsCount = notificationsSnapshot.exists() ? Object.keys(notificationsSnapshot.val()).length : 0;
+    const coursesCount = coursesSnapshot.exists()
+      ? Object.keys(coursesSnapshot.val()).length
+      : 0;
+    const assignmentsCount = assignmentsSnapshot.exists()
+      ? Object.keys(assignmentsSnapshot.val()).length
+      : 0;
+    const notificationsCount = notificationsSnapshot.exists()
+      ? Object.keys(notificationsSnapshot.val()).length
+      : 0;
 
     document.querySelector(".courses-item h3").textContent = coursesCount;
-    document.querySelector(".assignments-item h3").textContent = assignmentsCount;
-    document.querySelector(".notifications-item h3").textContent = notificationsCount;
+    document.querySelector(".assignments-item h3").textContent =
+      assignmentsCount;
+    document.querySelector(".notifications-item h3").textContent =
+      notificationsCount;
   } catch (error) {
     console.error("Error fetching counts:", error);
     showToast("Error fetching dashboard data.", "error");
@@ -145,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     true
   );
 
+  displayUsers();
   // Update dashboard counts on page load
   updateDashboardCounts();
 });

@@ -1,3 +1,4 @@
+// adminCourses
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -104,16 +105,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const courseCode = event.target.courseCode.value;
     const courseCredit = event.target.courseCredit.value;
     const courseStudents = event.target.courseStudents.value;
+    const courseClass = event.target.courseClass.value; // New line
 
     try {
       const coursesRef = ref(database, "courses");
       const newCourseRef = push(coursesRef);
+      const courseId = newCourseRef.key;
+
       await set(newCourseRef, {
         name: courseName,
         code: courseCode,
         credit: courseCredit,
         students: courseStudents,
+        class: courseClass, // New line
       });
+
+      // Add the course to the specified class
+      const classCoursesRef = ref(
+        database,
+        `classes/${courseClass}/courses/${courseId}`
+      );
+      await set(classCoursesRef, true);
+
       showToast("Course added successfully!", "success");
     } catch (error) {
       console.error("Error adding course: ", error);
@@ -171,26 +184,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".action-button").forEach((button) => {
-    button.addEventListener("click", function (event) {
+  const actionButtons = document.querySelectorAll(".action-button");
+  actionButtons.forEach((button) => {
+    button.onclick = function (event) {
+      // Stop the event from propagating to the document level
       event.stopPropagation();
+      // Get the next sibling modal menu of this button
       const modalMenu = this.nextElementSibling;
+      // Toggle the display of the modal menu
       const isVisible = modalMenu.style.display === "block";
+      // Hide all other modal menus
       document.querySelectorAll(".modal-menu").forEach((menu) => {
         menu.style.display = "none";
       });
+      // Show or hide this modal menu
       modalMenu.style.display = isVisible ? "none" : "block";
-    });
-  });
-
-  document.addEventListener("click", (event) => {
-    const isActionButton = event.target.closest(".action-button");
-    const isMenuItem = !isActionButton && event.target.closest(".modal-menu");
-    if (!isMenuItem) {
-      document.querySelectorAll(".modal-menu").forEach((menu) => {
-        menu.style.display = "none";
-      });
-    }
+    };
   });
 
   displayCourses();
@@ -216,16 +225,16 @@ const displayCourses = async () => {
           <td>${course.name}</td>
           <td>${course.credit}</td>
           <td>${course.students}</td>
+          <td>${course.class}</td>
           <td>
-            <div class="action-button">...</div>
+            <div class="action-button">...</div> 
             <div class="modal-menu">
               <ul>
                 <li class="modal-edit-course" data-id="${courseId}">Edit Course</li>
                 <li class="modal-delete-course" data-id="${courseId}">Delete Course</li>
               </ul>
             </div>
-          </td>
-        `;
+          </td>`;
       coursesTableBody.appendChild(tr);
     }
   } catch (error) {

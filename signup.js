@@ -1,3 +1,4 @@
+// sign up page
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -7,6 +8,7 @@ import {
   getDatabase,
   ref,
   set,
+  get,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -110,6 +112,11 @@ submit.addEventListener("click", async function (event) {
     const user = userCredential.user;
     console.log("User created successfully:", user);
 
+    // Get courses for the selected class
+    const classCoursesRef = ref(database, `classes/${currentClass}/courses`);
+    const classCoursesSnapshot = await get(classCoursesRef);
+    const classCourses = classCoursesSnapshot.val() || {};
+
     // Save user data to the Realtime Database
     const userRef = ref(database, "users/" + user.uid);
     await set(userRef, {
@@ -118,6 +125,7 @@ submit.addEventListener("click", async function (event) {
       regNo: regNo,
       currentClass: currentClass,
       contact: contact,
+      courses: classCourses,
     });
     console.log("User data saved to database successfully.");
 
