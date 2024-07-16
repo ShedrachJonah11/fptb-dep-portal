@@ -79,7 +79,6 @@
                   <th>Current Class</th>
                   <th>Email</th>
                   <th>Contact</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,15 +88,6 @@
                   <td>Loading...</td>
                   <td>Loading...</td>
                   <td>Loading...</td>
-                  <td>
-                    <div class="action-button">...</div>
-                    <div class="modal-menu">
-                      <ul>
-                        <li class="modal-edit-user">Edit User</li>
-                        <li class="modal-delete-user">Delete User</li>
-                      </ul>
-                    </div>
-                  </td>
                 </tr>
                 <!-- Repeat rows as necessary -->
               </tbody>
@@ -106,8 +96,10 @@
         </div>
       </main>
     </div>
-    <div id="loading-overlay" style="display: none">Loading...</div>
-    <div id="toast-container"></div>
+    <div id="toast-container" class="toast-container"></div>
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
     <script type="module" src="/adminDashboard.js"></script>
   </body>
 </html>

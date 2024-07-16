@@ -64,19 +64,11 @@ async function displayUsers() {
         const tableRow = document.createElement("tr");
         tableRow.innerHTML = `
           <td>${user.regNo || "N/A"}</td>
-          <td>${user.fullName || "N/A"}</td>
+          <td>${user.name || "N/A"}</td>
           <td>${user.currentClass || "N/A"}</td>
           <td>${user.email || "N/A"}</td>
           <td>${user.contact || "N/A"}</td>
-          <td>
-            <div class="action-button">...</div>
-            <div class="modal-menu">
-              <ul>
-                <li class="modal-edit-user">Edit User</li>
-                <li class="modal-delete-user" >Delete User</li>
-              </ul>
-            </div>
-          </td>
+        
         `;
         usersTableBody.appendChild(tableRow);
       });

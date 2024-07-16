@@ -64,7 +64,7 @@ async function displayUsers() {
         const tableRow = document.createElement("tr");
         tableRow.innerHTML = `
           <td>${user.regNo || "N/A"}</td>
-          <td>${user.fullName || "N/A"}</td>
+          <td>${user.name || "N/A"}</td>
           <td>${user.currentClass || "N/A"}</td>
           <td>${user.email || "N/A"}</td>
           <td>${user.contact || "N/A"}</td>
