@@ -139,6 +139,18 @@ img {
   align-items: center;
   column-gap: 1rem;
 }
+
+.search-bar {
+  width: 30%;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: var(--normal-font-size);
+  box-shadow: #eae7e6;
+}
+
 .nav__menu {
   position: fixed;
   top: 0;
@@ -197,7 +209,6 @@ img {
   cursor: pointer;
 }
 
-
 .nav__item {
   display: flex;
   align-items: center;
@@ -233,15 +244,177 @@ img {
   left: 0;
 }
 
+.head-title h2 {
+  font-weight: 500;
+  margin-top: 2rem;
+}
+
+.second-sec {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: var(--mb-2);
+}
+
+.enrolled-courses {
+  width: 60%;
+}
+
+.second-sec .side {
+  max-width: 30rem;
+}
+
+.top-text {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+}
+
+.card-container {
+  border: 3px solid var(--first-color);
+}
+
+.card-container p {
+  max-width: 10rem;
+}
+
+.cards button {
+  background-color: var(--first-color);
+  padding: 0.4rem;
+  width: 6rem;
+  color: white;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.card-container .text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #033f034f;
+}
+
+.card-container img {
+  height: 6rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+}
+
+.images {
+  display: flex;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 576px) {
+  .search-bar {
+    width: 100%;
+  }
+
+  .profile-text p {
+    font-size: var(--smaller-font-size);
+  }
+
+  .notification-icon {
+    font-size: 1.2rem;
+  }
+  .top-nav {
+    gap: 0;
+    margin-bottom: 10px;
+  }
+  .second-sec {
+    margin-top: 5px;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .welcome-section {
+    margin-top: 10px;
+  }
+  .welcome-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2em;
+  }
+
+  .welcome-container .welcome-image {
+    display: none;
+  }
+
   .nav__menu {
     width: 52% !important;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .side {
+    display: none;
+  }
+
+  .profile-info a {
+    margin-right: 0;
   }
 }
 
 @media screen and (max-width: 1023px) {
+  .welcome-section {
+    margin-top: auto;
+  }
+  .welcome-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2em;
+  }
+
+  .welcome-container .welcome-image {
+    display: none;
+  }
+
   .nav__menu {
     width: 50% !important;
+  }
+
+  .card-container p {
+    font-size: var(--smaller-font-size);
+  }
+
+  .card-container img {
+    height: 4rem;
+  }
+
+  .second-sec {
+    gap: 1.8rem;
+  }
+
+  .textCard {
+    width: 14rem;
+  }
+  .cards {
+    gap: 1rem;
+  }
+  .enrolled-courses {
+    width: 32rem;
+  }
+  .textCard {
+    width: fit-content;
   }
 }
 
@@ -264,5 +437,12 @@ img {
   .nav__menu {
     left: 0;
     width: 56%;
+  }
+
+  .card-container p {
+    font-size: var(--smaller-font-size);
+  }
+  .second-sec {
+    gap: 3rem;
   }
 }

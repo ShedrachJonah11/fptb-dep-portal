@@ -18,10 +18,11 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyAOvjJvw7G_lrYlwxkFFSDOxji1IeqQ2zw",
   authDomain: "authentication-4bf9c.firebaseapp.com",
+  databaseURL: "https://authentication-4bf9c-default-rtdb.firebaseio.com",
   projectId: "authentication-4bf9c",
   storageBucket: "authentication-4bf9c.appspot.com",
   messagingSenderId: "26178407898",
-  appId: "1:26178407898:web:475f505e40f724eed844e3",
+  appId: "1:26178407898:web:475f505e40f724eed844e3"
 };
 
 // Initialize Firebase

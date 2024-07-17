@@ -227,6 +227,18 @@ img {
   height: 0.6em;
 }
 
+.head-title h2 {
+  font-weight: 500;
+  margin-top: 2rem;
+}
+
+.notification-container {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   .nav__menu {
     width: 52% !important;
