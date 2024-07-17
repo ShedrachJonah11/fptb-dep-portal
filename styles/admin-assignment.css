@@ -1,159 +1,312 @@
 body {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    height: 100vh;
-  }
-  
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: #004400;
+  color: #fff;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.sidebar-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar-nav ul li {
+  padding: 15px 20px;
+}
+
+.sidebar-nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-nav ul li a.active {
+  background-color: #006600;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+  display: block;
+  position: absolute;
+  bottom: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info p {
+  font-size: small;
+}
+
+.user-info img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.modal-menu {
+  display: none; /* Ensure it starts hidden */
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 2; /* Ensure it's above other elements */
+  padding: 5px 0;
+}
+
+.modal-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-menu li {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+/* Add hover effect for menu items */
+.modal-menu li:hover {
+  background-color: #e9e9e9;
+}
+
+/* Position the modal-menu relative to the action-button */
+.action-button {
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar-actions a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.main-content {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.main-content header {
+  padding: 10px 20px;
+}
+
+.head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head-row button {
+  padding: 12px;
+  width: 12%;
+  background-color: #004400;
+  color: #fff;
+  border-radius: 5px;
+  font-size: medium;
+  border: none;
+}
+
+.head-row button:hover {
+  background-color: #006600;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.modal-content form input {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content form button {
+  padding: 10px 20px;
+  background-color: #004400;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content form .cancel {
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.modal-content form button:hover {
+  background-color: #006600;
+}
+
+.modal-content form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-appearance: none; 
+     -moz-appearance: none; 
+          appearance: none; 
+}
+
+.select-wrapper {
+  position: relative;
+  display: block;
+}
+
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000;
+  pointer-events: none; 
+}
+
+/* Wrap the select tag in a div with a class name of select-wrapper */
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .dashboard-container {
-    display: flex;
-    width: 100%;
-  }
-  
-  .sidebar {
-    background-color: #004400;
-    color: #fff;
-    width: 250px;
-    display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
   }
-  
-  .sidebar-logo {
-    text-align: center;
-    padding: 20px 0;
-  }
-  
-  .sidebar-nav ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar-nav ul li {
-    padding: 15px 20px;
-  }
-  
-  .sidebar-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .sidebar-nav ul li a.active {
-    background-color: #006600;
-    padding: 6px;
-    border-radius: 5px;
-  }
-  
-  .sidebar-footer {
-    padding: 20px;
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    column-gap: 0.5em;
-    display: block;
+
+  .sidebar {
+    width: 100%;
     position: absolute;
-    bottom: 2rem;
+    transform: translateX(-100%);
+    z-index: 1000;
   }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-info p {
-    font-size: small;
-  }
-  
-  .user-info img {
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .sidebar-actions a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 18px;
+
+  .sidebar.show {
+    transform: translateX(0);
   }
 
   .main-content {
-    padding: 20px;
-    flex-grow: 1;
+    order: 1;
   }
-  
-  .main-content header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px 20px;
-  }
-  
+
   .hamburger {
-    display: none;
+    display: flex;
+  }
+
+  .dashboard-overview {
     flex-direction: column;
-    cursor: pointer;
-    border: none;
-    background: none;
+    width: 100%;
   }
-  
-  .hamburger .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin: 4px 0;
+
+  .overview-item {
+    width: 92%;
+    margin-bottom: 20px;
   }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .dashboard-container {
-      flex-direction: column;
-    }
-  
-    .sidebar {
-      width: 100%;
-      position: absolute;
-      transform: translateX(-100%);
-      z-index: 1000;
-    }
-  
-    .sidebar.show {
-      transform: translateX(0);
-    }
-  
-    .main-content {
-      order: 1;
-    }
-  
-    .hamburger {
-      display: flex;
-    }
-  
-    .dashboard-overview {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .overview-item {
-      width: 92%;
-      margin-bottom: 20px;
-    }
+  .head-row button {
+    width: 50%;
   }
-  
-  @media (max-width: 480px) {
-    .sidebar-nav ul li {
-      padding: 10px;
-    }
-  
-    .overview-item {
-      padding: 15px;
-    }
-  
-    .users-table th,
-    .users-table td {
-      padding: 8px;
-    }
+}
+
+@media (max-width: 480px) {
+  .sidebar-nav ul li {
+    padding: 10px;
   }
-  
+
+  .overview-item {
+    padding: 15px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 8px;
+  }
+}
