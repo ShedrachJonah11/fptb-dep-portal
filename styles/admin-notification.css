@@ -231,9 +231,9 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  -webkit-appearance: none; 
-     -moz-appearance: none; 
-          appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .select-wrapper {
@@ -242,7 +242,7 @@ body {
 }
 
 .select-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 15px;
   top: 50%;
@@ -252,22 +252,48 @@ body {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid #000;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-/* Wrap the select tag in a div with a class name of select-wrapper */
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.notice {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notice-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.notice .menu {
+  cursor: pointer;
+}
+
+.date {
+  text-align: right;
+  font-size: small;
+  font-weight: 500;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-
   .sidebar {
-    width: 100%;
-    position: absolute;
     transform: translateX(-100%);
-    z-index: 1000;
+    position: fixed;
+    height: 100%;
+    z-index: 100;
   }
 
   .sidebar.show {
@@ -275,38 +301,39 @@ body {
   }
 
   .main-content {
-    order: 1;
+    margin-left: 0;
+  }
+
+  .head-row button {
+    width: auto;
+    padding: 10px 20px;
   }
 
   .hamburger {
     display: flex;
   }
-
-  .dashboard-overview {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .overview-item {
-    width: 92%;
-    margin-bottom: 20px;
-  }
-  .head-row button {
-    width: 50%;
-  }
 }
 
 @media (max-width: 480px) {
+  .sidebar-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .sidebar-nav ul li {
-    padding: 10px;
+    padding: 10px 15px;
   }
 
-  .overview-item {
-    padding: 15px;
+  .head-row h2 {
+    font-size: 1.2em;
   }
 
-  .users-table th,
-  .users-table td {
-    padding: 8px;
+  .head-row button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+  .container {
+    padding: 0 10px;
   }
 }

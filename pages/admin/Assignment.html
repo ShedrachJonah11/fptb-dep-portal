@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment</title>
-    <link rel="stylesheet" href="/styles/admin-manageuser.css" />
+    <link rel="stylesheet" href="/styles/admin-assignment.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -65,6 +65,49 @@
             <span class="bar"></span>
           </button>
         </header>
+
+        <div class="container">
+          <div class="assignment">
+            <div class="assignment-head">
+              <h2></h2>
+              <div class="menu"></div>
+            </div>
+            <h3></h3>
+            <p></p>
+            <div class="date"></div>
+          </div>
+        </div>
+
+        <div id="assignmentModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Assignment</h2>
+            <form id="addAssignmentForm">
+              <label for="courseCode">Course Code:</label>
+              <input type="text" id="courseCode" name="courseCode" required />
+
+              <label for="assignmentClass">Class:</label>
+              <select id="assignmentClass" name="assignmentClass" required>
+                <option value="ND1">ND1</option>
+                <option value="ND2">ND2</option>
+                <option value="HND1">HND1</option>
+                <option value="HND2">HND2</option>
+              </select>
+
+              <label for="assignmentDescription">Assignment Description:</label>
+              <textarea
+                id="assignmentDescription"
+                name="assignmentDescription"
+                required
+              ></textarea>
+
+              <label for="dueDate">Due Date:</label>
+              <input type="date" id="dueDate" name="dueDate" required />
+
+              <button type="submit" id="openModalButton">Add Assignment</button>
+            </form>
+          </div>
+        </div>
       </main>
     </div>
     <script type="module" src="/adminDashboard.js"></script>
