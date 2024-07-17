@@ -1,12 +1,18 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_624_829)">
+<g clip-path="url(#clip0_608_1293)">
+<g clip-path="url(#clip1_608_1293)">
 <rect width="48" height="48" rx="24" fill="#F3F3F3"/>
 <circle cx="24" cy="51" r="21" fill="#CBD5E1"/>
 <circle cx="24" cy="19.5" r="7.5" fill="#CBD5E1"/>
 </g>
 <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white"/>
+<circle cx="42" cy="42" r="5" fill="#03CA2F" stroke="white" stroke-width="2"/>
+</g>
 <defs>
-<clipPath id="clip0_624_829">
+<clipPath id="clip0_608_1293">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+<clipPath id="clip1_608_1293">
 <rect width="48" height="48" rx="24" fill="white"/>
 </clipPath>
 </defs>

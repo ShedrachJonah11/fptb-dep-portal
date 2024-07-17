@@ -228,6 +228,11 @@ img {
   height: 0.6em;
 }
 
+/*=== Show menu ===*/
+.show {
+  left: 0;
+}
+
 @media screen and (max-width: 768px) {
   .nav__menu {
     width: 52% !important;

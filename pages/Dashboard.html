@@ -61,29 +61,22 @@
             <a href="#" id="logout">Logout</a>
           </div>
         </div>
-
-        <div class="top-nav">
-          <input type="text" class="search-bar" placeholder="Search" />
-          <div class="profile-info">
-            <img
-              src="/images/profile-image.svg"
-              alt="Profile Image"
-              class="profile-img"
-            />
-
-            <div class="profile-text">
-              <p id="user-name">Loading...</p>
-              <p id="user-class">Loading class...</p>
-            </div>
-          </div>
-          <div class="notification-icon">
-            <i class="bx bx-bell"></i>
-          </div>
-        </div>
       </nav>
     </header>
 
     <main>
+      <div class="top-nav">
+        <input type="text" class="search-bar" placeholder="Search" />
+        <div class="profile-info">
+          <a href="/pages/Profile.html">
+            <img src="/images/Display Picture.svg" alt="Profile Image" />
+            <div class="profile-text">
+              <p id="user-name">Loading...</p>
+              <p id="user-class">Loading class...</p>
+            </div>
+          </a>
+        </div>
+      </div>
       <section class="welcome-section">
         <div class="welcome-container">
           <div class="welcome-text">
@@ -122,6 +115,6 @@
     </main>
 
     <!--===== MAIN JS =====-->
-    <script src="/script/main.js"></script>
+    <script type="module" src="/script/main.js"></script> 
   </body>
 </html>
