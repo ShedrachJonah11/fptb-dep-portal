@@ -203,6 +203,18 @@ body {
   width: 80%;
   max-width: 500px;
   border-radius: 10px;
+  animation: slide-down 0.5s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .close {
@@ -258,9 +270,9 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  -webkit-appearance: none; 
-     -moz-appearance: none; 
-          appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .select-wrapper {
@@ -269,7 +281,7 @@ body {
 }
 
 .select-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 15px;
   top: 50%;
@@ -279,7 +291,7 @@ body {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid #000;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 /* Wrap the select tag in a div with a class name of select-wrapper */

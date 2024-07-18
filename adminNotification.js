@@ -1,4 +1,4 @@
-// adminAssignment.js
+// adminNotification.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -49,67 +49,64 @@ function showToast(message, type) {
 }
 
 // Add these functions
-function openAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "block";
+function openNotificationModal() {
+  document.getElementById("notificationModal").style.display = "block";
 }
 
-function closeAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "none";
+function closeNotificationModal() {
+  document.getElementById("notificationModal").style.display = "none";
 }
 
-function addAssignment(event) {
+function addNotification(event) {
   event.preventDefault();
 
-  const courseCode = document.getElementById("courseCode").value;
-  const assignmentClass = document.getElementById("assignmentClass").value;
-  const description = document.getElementById("assignmentDescription").value;
-  const dueDate = document.getElementById("dueDate").value;
+  const title = document.getElementById("notificationTitle").value;
+  const message = document.getElementById("notificationMessage").value;
+  const date = document.getElementById("notificationDate").value;
 
-  const assignmentsRef = ref(database, "assignments");
-  const newAssignmentRef = push(assignmentsRef);
+  const notificationsRef = ref(database, "notifications");
+  const newNotificationRef = push(notificationsRef);
 
-  set(newAssignmentRef, {
-    courseCode: courseCode,
-    class: assignmentClass,
-    description: description,
-    dueDate: dueDate,
+  set(newNotificationRef, {
+    title: title,
+    message: message,
+    date: date,
     createdAt: new Date().toISOString(),
   })
     .then(() => {
-      showToast("Assignment added successfully", "success");
-      closeAssignmentModal();
-      displayAssignments();
+      showToast("Notification added successfully", "success");
+      closeNotificationModal();
+      displayNotifications();
     })
     .catch((error) => {
-      showToast("Error adding assignment: " + error.message, "error");
+      showToast("Error adding notification: " + error.message, "error");
     });
 }
 
-async function displayAssignments() {
-  const assignmentsRef = ref(database, "assignments");
+async function displayNotifications() {
+  const notificationsRef = ref(database, "notifications");
   try {
-    const snapshot = await get(assignmentsRef);
-    const assignments = snapshot.val();
+    const snapshot = await get(notificationsRef);
+    const notifications = snapshot.val();
     const container = document.querySelector(".container");
-    container.innerHTML = ""; // Clear existing assignments
+    container.innerHTML = ""; // Clear existing notifications
 
-    for (let id in assignments) {
-      const assignment = assignments[id];
-      const assignmentElement = document.createElement("div");
-      assignmentElement.className = "assignment";
-      assignmentElement.innerHTML = `
-        <div class="assignment-head">
-          <h2>${assignment.courseCode}</h2>
+    for (let id in notifications) {
+      const notification = notifications[id];
+      const notificationElement = document.createElement("div");
+      notificationElement.className = "notification";
+      notificationElement.innerHTML = `
+        <div class="notification-head">
+          <h2>${notification.title}</h2>
           <div class="menu">•••</div>
         </div>
-        <h3>${assignment.class}</h3>
-        <p>${assignment.description}</p>
-        <div class="date">${assignment.dueDate}</div>
+        <p>${notification.message}</p>
+        <div class="date">${notification.date}</div>
       `;
-      container.appendChild(assignmentElement);
+      container.appendChild(notificationElement);
     }
   } catch (error) {
-    showToast("Error fetching assignments: " + error.message, "error");
+    showToast("Error fetching notifications: " + error.message, "error");
   }
 }
 
@@ -138,21 +135,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const openModalButton = document.getElementById("openModalButton");
-  const modal = document.getElementById("assignmentModal");
+  const openModalButton = document.getElementById("openNotificationModalButton");
+  const modal = document.getElementById("notificationModal");
   const closeButton = modal.querySelector(".close");
-  const addAssignmentForm = document.getElementById("addAssignmentForm");
+  const addNotificationForm = document.getElementById("addNotificationForm");
 
-  openModalButton.addEventListener("click", openAssignmentModal);
-  closeButton.addEventListener("click", closeAssignmentModal);
-  addAssignmentForm.addEventListener("submit", addAssignment);
+  openModalButton.addEventListener("click", openNotificationModal);
+  closeButton.addEventListener("click", closeNotificationModal);
+  addNotificationForm.addEventListener("submit", addNotification);
 
   // Close modal when clicking outside
   window.addEventListener("click", (event) => {
     if (event.target === modal) {
-      closeAssignmentModal();
+      closeNotificationModal();
     }
   });
 
-  displayAssignments();
+  displayNotifications();
 });
