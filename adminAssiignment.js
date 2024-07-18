@@ -1,4 +1,3 @@
-// adminAssignment.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -10,6 +9,8 @@ import {
   get,
   push,
   set,
+  update,
+  remove,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -48,7 +49,6 @@ function showToast(message, type) {
   }
 }
 
-// Add these functions
 function openAssignmentModal() {
   document.getElementById("assignmentModal").style.display = "block";
 }
@@ -100,7 +100,13 @@ async function displayAssignments() {
       assignmentElement.innerHTML = `
         <div class="assignment-head">
           <h2>${assignment.courseCode}</h2>
-          <div class="menu">•••</div>
+          <div class="menu" data-id="${id}">•••</div>
+          <div class="modal-menu" id="modal-menu-${id}">
+            <ul>
+              <li class="edit-assignment" data-id="${id}">Edit Assignment</li>
+              <li class="delete-assignment" data-id="${id}">Delete Assignment</li>
+            </ul>
+          </div>
         </div>
         <h3>${assignment.class}</h3>
         <p>${assignment.description}</p>
@@ -108,9 +114,98 @@ async function displayAssignments() {
       `;
       container.appendChild(assignmentElement);
     }
+
+    // Add event listeners to menu buttons
+    const menuButtons = document.querySelectorAll('.menu');
+    menuButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        const modalMenu = document.getElementById(`modal-menu-${id}`);
+        modalMenu.style.display = modalMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Add event listeners to edit and delete buttons
+    const editButtons = document.querySelectorAll('.edit-assignment');
+    const deleteButtons = document.querySelectorAll('.delete-assignment');
+
+    editButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        editAssignment(id);
+      });
+    });
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        deleteAssignment(id);
+      });
+    });
   } catch (error) {
     showToast("Error fetching assignments: " + error.message, "error");
   }
+}
+
+function editAssignment(id) {
+  const assignmentsRef = ref(database, `assignments/${id}`);
+  get(assignmentsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const assignment = snapshot.val();
+        document.getElementById("courseCode").value = assignment.courseCode;
+        document.getElementById("assignmentClass").value = assignment.class;
+        document.getElementById("assignmentDescription").value = assignment.description;
+        document.getElementById("dueDate").value = assignment.dueDate;
+        openAssignmentModal();
+
+        const updateButton = document.getElementById("updateAssignmentButton");
+        updateButton.style.display = "block";
+        const addButton = document.getElementById("addAssignmentButton");
+        addButton.style.display = "none";
+
+        updateButton.onclick = function (event) {
+          event.preventDefault();
+          const updatedCourseCode = document.getElementById("courseCode").value;
+          const updatedClass = document.getElementById("assignmentClass").value;
+          const updatedDescription = document.getElementById("assignmentDescription").value;
+          const updatedDueDate = document.getElementById("dueDate").value;
+
+          update(assignmentsRef, {
+            courseCode: updatedCourseCode,
+            class: updatedClass,
+            description: updatedDescription,
+            dueDate: updatedDueDate,
+            updatedAt: new Date().toISOString(),
+          })
+            .then(() => {
+              showToast("Assignment updated successfully", "success");
+              closeAssignmentModal();
+              displayAssignments();
+            })
+            .catch((error) => {
+              showToast("Error updating assignment: " + error.message, "error");
+            });
+        };
+      } else {
+        showToast("Assignment not found", "error");
+      }
+    })
+    .catch((error) => {
+      showToast("Error fetching assignment: " + error.message, "error");
+    });
+}
+
+function deleteAssignment(id) {
+  const assignmentsRef = ref(database, `assignments/${id}`);
+  remove(assignmentsRef)
+    .then(() => {
+      showToast("Assignment deleted successfully", "success");
+      displayAssignments();
+    })
+    .catch((error) => {
+      showToast("Error deleting assignment: " + error.message, "error");
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
