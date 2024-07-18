@@ -1,4 +1,3 @@
-// adminCourses
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -22,7 +21,7 @@ const firebaseConfig = {
   projectId: "authentication-4bf9c",
   storageBucket: "authentication-4bf9c.appspot.com",
   messagingSenderId: "26178407898",
-  appId: "1:26178407898:web:475f505e40f724eed844e3"
+  appId: "1:26178407898:web:475f505e40f724eed844e3",
 };
 
 // Initialize Firebase
@@ -56,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const openModalButton = document.getElementById("openModalButton");
   const closeModalButton = document.querySelector(".modal .close");
   const cancelModalButton = document.querySelector(".modal-content .cancel");
+  const addCourseForm = document.getElementById("addCourseForm");
 
   openModalButton?.addEventListener("click", () => {
     modal.style.display = "block";
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const courseCode = event.target.courseCode.value;
     const courseCredit = event.target.courseCredit.value;
     const courseStudents = event.target.courseStudents.value;
-    const courseClass = event.target.courseClass.value; // New line
+    const courseClass = event.target.courseClass.value;
 
     try {
       const coursesRef = ref(database, "courses");
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         code: courseCode,
         credit: courseCredit,
         students: courseStudents,
-        class: courseClass, // New line
+        class: courseClass,
       });
 
       // Add the course to the specified class
@@ -143,64 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", async (event) => {
     if (event.target.classList.contains("modal-edit-course")) {
       const courseId = event.target.dataset.id;
-      const courseData = await get(ref(database, `courses/${courseId}`)).then(
-        (snapshot) => snapshot.val()
-      );
-
-      const newName = prompt("Enter new course name:", courseData.name);
-      const newCode = prompt("Enter new course code:", courseData.code);
-      const newCredit = prompt("Enter new course credit:", courseData.credit);
-      const newStudents = prompt(
-        "Enter new number of students:",
-        courseData.students
-      );
-
-      try {
-        await update(ref(database, `courses/${courseId}`), {
-          name: newName,
-          code: newCode,
-          credit: newCredit,
-          students: newStudents,
-        });
-        showToast("Course updated successfully!", "success");
-        await displayCourses();
-      } catch (error) {
-        console.error("Error updating course:", error);
-        showToast("Error updating course.", "error");
-      }
+      editCourse(courseId);
     }
 
     if (event.target.classList.contains("modal-delete-course")) {
       const courseId = event.target.dataset.id;
-      if (confirm("Are you sure you want to delete this course?")) {
-        try {
-          await remove(ref(database, `courses/${courseId}`));
-          showToast("Course deleted successfully!", "success");
-          await displayCourses();
-        } catch (error) {
-          console.error("Error deleting course:", error);
-          showToast("Error deleting course.", "error");
-        }
-      }
+      deleteCourse(courseId);
     }
-  });
-
-  const actionButtons = document.querySelectorAll(".action-button");
-  actionButtons.forEach((button) => {
-    button.onclick = function (event) {
-      // Stop the event from propagating to the document level
-      event.stopPropagation();
-      // Get the next sibling modal menu of this button
-      const modalMenu = this.nextElementSibling;
-      // Toggle the display of the modal menu
-      const isVisible = modalMenu.style.display === "block";
-      // Hide all other modal menus
-      document.querySelectorAll(".modal-menu").forEach((menu) => {
-        menu.style.display = "none";
-      });
-      // Show or hide this modal menu
-      modalMenu.style.display = isVisible ? "none" : "block";
-    };
   });
 
   displayCourses();
@@ -228,8 +177,8 @@ const displayCourses = async () => {
           <td>${course.students}</td>
           <td>${course.class}</td>
           <td>
-            <div class="action-button">...</div> 
-            <div class="modal-menu">
+            <div class="menu" data-id="${courseId}">...</div> 
+            <div class="modal-menu" id="modal-menu-${courseId}">
               <ul>
                 <li class="modal-edit-course" data-id="${courseId}">Edit Course</li>
                 <li class="modal-delete-course" data-id="${courseId}">Delete Course</li>
@@ -238,8 +187,79 @@ const displayCourses = async () => {
           </td>`;
       coursesTableBody.appendChild(tr);
     }
+
+    // Add event listeners to menu buttons
+    const menuButtons = document.querySelectorAll('.menu');
+    menuButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        const modalMenu = document.getElementById(`modal-menu-${id}`);
+        modalMenu.style.display = modalMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    });
   } catch (error) {
     console.error("Error fetching courses:", error);
     showToast("Error fetching courses.", "error");
   }
 };
+
+function editCourse(courseId) {
+  const courseRef = ref(database, `courses/${courseId}`);
+  get(courseRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const courseData = snapshot.val();
+      
+      // Populate the modal with current course data
+      document.getElementById("courseName").value = courseData.name;
+      document.getElementById("courseCode").value = courseData.code;
+      document.getElementById("courseCredit").value = courseData.credit;
+      document.getElementById("courseStudents").value = courseData.students;
+      document.getElementById("courseClass").value = courseData.class;
+
+      // Show the modal
+      document.getElementById("modal").style.display = "block";
+
+      // Change form submission handler for updating
+      const addCourseForm = document.getElementById("addCourseForm");
+      addCourseForm.onsubmit = async (event) => {
+        event.preventDefault();
+
+        const updatedCourse = {
+          name: document.getElementById("courseName").value,
+          code: document.getElementById("courseCode").value,
+          credit: document.getElementById("courseCredit").value,
+          students: document.getElementById("courseStudents").value,
+          class: document.getElementById("courseClass").value,
+        };
+
+        try {
+          await update(courseRef, updatedCourse);
+          showToast("Course updated successfully!", "success");
+          document.getElementById("modal").style.display = "none";
+          displayCourses();
+        } catch (error) {
+          console.error("Error updating course:", error);
+          showToast("Error updating course.", "error");
+        }
+      };
+    } else {
+      showToast("Course not found.", "error");
+    }
+  }).catch((error) => {
+    console.error("Error fetching course:", error);
+    showToast("Error fetching course.", "error");
+  });
+}
+
+function deleteCourse(courseId) {
+  if (confirm("Are you sure you want to delete this course?")) {
+    const courseRef = ref(database, `courses/${courseId}`);
+    remove(courseRef).then(() => {
+      showToast("Course deleted successfully!", "success");
+      displayCourses();
+    }).catch((error) => {
+      console.error("Error deleting course:", error);
+      showToast("Error deleting course.", "error");
+    });
+  }
+}
