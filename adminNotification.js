@@ -1,4 +1,3 @@
-// adminNotification.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import {
   getAuth,
@@ -10,6 +9,8 @@ import {
   get,
   push,
   set,
+  update,
+  remove,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -48,7 +49,6 @@ function showToast(message, type) {
   }
 }
 
-// Add these functions
 function openNotificationModal() {
   document.getElementById("notificationModal").style.display = "block";
 }
@@ -98,16 +98,108 @@ async function displayNotifications() {
       notificationElement.innerHTML = `
         <div class="notification-head">
           <h2>${notification.title}</h2>
-          <div class="menu">•••</div>
+          <div class="menu" data-id="${id}">•••</div>
+          <div class="modal-menu" id="modal-menu-${id}">
+            <ul>
+              <li class="edit-notification" data-id="${id}">Edit Notification</li>
+              <li class="delete-notification" data-id="${id}">Delete Notification</li>
+            </ul>
+          </div>
         </div>
         <p>${notification.message}</p>
         <div class="date">${notification.date}</div>
       `;
       container.appendChild(notificationElement);
     }
+
+    // Add event listeners to menu buttons
+    const menuButtons = document.querySelectorAll('.menu');
+    menuButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        const modalMenu = document.getElementById(`modal-menu-${id}`);
+        modalMenu.style.display = modalMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Add event listeners to edit and delete buttons
+    const editButtons = document.querySelectorAll('.edit-notification');
+    const deleteButtons = document.querySelectorAll('.delete-notification');
+
+    editButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        editNotification(id);
+      });
+    });
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const id = event.target.dataset.id;
+        deleteNotification(id);
+      });
+    });
   } catch (error) {
     showToast("Error fetching notifications: " + error.message, "error");
   }
+}
+
+function editNotification(id) {
+  const notificationsRef = ref(database, `notifications/${id}`);
+  get(notificationsRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const notification = snapshot.val();
+        document.getElementById("notificationTitle").value = notification.title;
+        document.getElementById("notificationMessage").value = notification.message;
+        document.getElementById("notificationDate").value = notification.date;
+        openNotificationModal();
+
+        const updateButton = document.getElementById("updateNotificationButton");
+        updateButton.style.display = "block";
+        const addButton = document.getElementById("addNotificationButton");
+        addButton.style.display = "none";
+
+        updateButton.onclick = function (event) {
+          event.preventDefault();
+          const updatedTitle = document.getElementById("notificationTitle").value;
+          const updatedMessage = document.getElementById("notificationMessage").value;
+          const updatedDate = document.getElementById("notificationDate").value;
+
+          update(notificationsRef, {
+            title: updatedTitle,
+            message: updatedMessage,
+            date: updatedDate,
+            updatedAt: new Date().toISOString(),
+          })
+            .then(() => {
+              showToast("Notification updated successfully", "success");
+              closeNotificationModal();
+              displayNotifications();
+            })
+            .catch((error) => {
+              showToast("Error updating notification: " + error.message, "error");
+            });
+        };
+      } else {
+        showToast("Notification not found", "error");
+      }
+    })
+    .catch((error) => {
+      showToast("Error fetching notification: " + error.message, "error");
+    });
+}
+
+function deleteNotification(id) {
+  const notificationsRef = ref(database, `notifications/${id}`);
+  remove(notificationsRef)
+    .then(() => {
+      showToast("Notification deleted successfully", "success");
+      displayNotifications();
+    })
+    .catch((error) => {
+      showToast("Error deleting notification: " + error.message, "error");
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

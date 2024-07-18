@@ -72,6 +72,7 @@ body {
   margin-right: 10px;
 }
 
+/* Modal Menu Styles */
 .modal-menu {
   display: none; /* Ensure it starts hidden */
   position: absolute;
@@ -80,6 +81,11 @@ body {
   border-radius: 5px;
   z-index: 2; /* Ensure it's above other elements */
   padding: 5px 0;
+  right: 12px;
+  margin-top: 8rem;
+}
+.menu {
+  cursor: pointer;
 }
 
 .modal-menu ul {
