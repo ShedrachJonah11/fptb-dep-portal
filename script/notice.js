@@ -1,7 +1,15 @@
 // Initialize Firebase and necessary services
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  get,
+} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAOvjJvw7G_lrYlwxkFFSDOxji1IeqQ2zw",
@@ -21,15 +29,15 @@ const logoutLink = document.getElementById("logout");
 
 // Logout functionality
 logoutLink.addEventListener("click", async (event) => {
-    event.preventDefault();
-    try {
-      await signOut(auth);
-      console.log("User signed out successfully.");
-      window.location.href = "login.html";
-    } catch (error) {
-      console.error("Error signing out:", error.message);
-    }
-  });
+  event.preventDefault();
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully.");
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Error signing out:", error.message);
+  }
+});
 
 // Menu toggle functionality
 const navMenu = document.getElementById("nav-menu");
@@ -51,4 +59,36 @@ navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     navMenu.classList.remove("show-menu");
   });
+});
+
+function displayNotifications() {
+  const notificationsRef = ref(database, "notifications");
+  get(notificationsRef)
+    .then((snapshot) => {
+      const notifications = snapshot.val();
+      const container = document.querySelector(".notification-container");
+      container.innerHTML = ""; // Clear existing notifications
+
+      for (let id in notifications) {
+        const notification = notifications[id];
+        const notificationElement = document.createElement("div");
+        notificationElement.className = "notification";
+        notificationElement.innerHTML = `
+          <div class="notification-head">
+            <h2>${notification.title}</h2>
+          </div>
+          <p>${notification.message}</p>
+          <div class="date">${notification.date}</div>
+        `;
+        container.appendChild(notificationElement);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching notifications:", error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayNotifications();
+
 });

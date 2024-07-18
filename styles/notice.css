@@ -237,7 +237,17 @@ img {
   padding: 1.5rem;
   border-radius: 10px;
   margin-top: 2rem;
+  gap:10px
 }
+
+.notification-container p {
+margin-bottom: 10px;
+}
+
+.notification-container .date {
+  font-weight: 400;
+}
+
 
 @media screen and (max-width: 768px) {
   .nav__menu {
