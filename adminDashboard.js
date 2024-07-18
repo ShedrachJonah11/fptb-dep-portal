@@ -8,8 +8,6 @@ import {
   getDatabase,
   ref,
   get,
-  push,
-  set,
 } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
 
 // Firebase configuration
@@ -45,71 +43,6 @@ function showToast(message, type) {
         toast.remove();
       }, 300);
     }, 3000);
-  }
-}
-
-// Add these functions
-function openAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "block";
-}
-
-function closeAssignmentModal() {
-  document.getElementById("assignmentModal").style.display = "none";
-}
-
-function addAssignment(event) {
-  event.preventDefault();
-
-  const courseCode = document.getElementById("courseCode").value;
-  const assignmentClass = document.getElementById("assignmentClass").value;
-  const description = document.getElementById("assignmentDescription").value;
-  const dueDate = document.getElementById("dueDate").value;
-
-  const assignmentsRef = ref(database, "assignments");
-  const newAssignmentRef = push(assignmentsRef);
-
-  set(newAssignmentRef, {
-    courseCode: courseCode,
-    class: assignmentClass,
-    description: description,
-    dueDate: dueDate,
-    createdAt: new Date().toISOString(),
-  })
-    .then(() => {
-      showToast("Assignment added successfully", "success");
-      closeAssignmentModal();
-      displayAssignments();
-    })
-    .catch((error) => {
-      showToast("Error adding assignment: " + error.message, "error");
-    });
-}
-
-async function displayAssignments() {
-  const assignmentsRef = ref(database, "assignments");
-  try {
-    const snapshot = await get(assignmentsRef);
-    const assignments = snapshot.val();
-    const container = document.querySelector(".container");
-    container.innerHTML = ""; // Clear existing assignments
-
-    for (let id in assignments) {
-      const assignment = assignments[id];
-      const assignmentElement = document.createElement("div");
-      assignmentElement.className = "assignment";
-      assignmentElement.innerHTML = `
-        <div class="assignment-head">
-          <h2>${assignment.courseCode}</h2>
-          <div class="menu">•••</div>
-        </div>
-        <h3>${assignment.class}</h3>
-        <p>${assignment.description}</p>
-        <div class="date">${assignment.dueDate}</div>
-      `;
-      container.appendChild(assignmentElement);
-    }
-  } catch (error) {
-    showToast("Error fetching assignments: " + error.message, "error");
   }
 }
 
@@ -262,24 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     true
   );
-
-  const openModalButton = document.getElementById("openModalButton");
-  const modal = document.getElementById("assignmentModal");
-  const closeButton = modal.querySelector(".close");
-  const addAssignmentForm = document.getElementById("addAssignmentForm");
-
-  openModalButton.addEventListener("click", openAssignmentModal);
-  closeButton.addEventListener("click", closeAssignmentModal);
-  addAssignmentForm.addEventListener("submit", addAssignment);
-
-  // Close modal when clicking outside
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      closeAssignmentModal();
-    }
-  });
-
-  displayAssignments();
 
   displayUsers();
   // Update dashboard counts on page load

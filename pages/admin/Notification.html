@@ -56,7 +56,7 @@
         <header>
           <div class="head-row">
             <h2>Notification</h2>
-            <button id="openModalButton">Add Notification</button>
+            <button id="openNotificationModalButton">Add Notification</button>
           </div>
 
           <button class="hamburger" id="hamburger">
@@ -67,17 +67,26 @@
         </header>
 
         <div class="container">
-          <div class="notice">
-            <div class="notice-head">
-              <h2>Exams Result Notice</h2>
-              <div class="menu">•••</div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis quis eligendi harum neque, commodi facere odio
-              cupiditate? Asperiores, odio voluptas!
-            </p>
-            <div class="date">11/07/2024</div>
+          <!-- Notifications will be dynamically loaded here -->
+        </div>
+
+        <!-- Notification Modal -->
+        <div id="notificationModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closeNotificationButton">&times;</span>
+            <h2>Add Notification</h2>
+            <form id="addNotificationForm">
+              <label for="notificationTitle">Title:</label>
+              <input type="text" id="notificationTitle" required />
+
+              <label for="notificationMessage">Message:</label>
+              <textarea id="notificationMessage" rows="4" required></textarea>
+
+              <label for="notificationDate">Date:</label>
+              <input type="date" id="notificationDate" required />
+
+              <button type="submit">Add Notification</button>
+            </form>
           </div>
         </div>
       </main>
