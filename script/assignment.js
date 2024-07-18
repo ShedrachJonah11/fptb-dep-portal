@@ -60,3 +60,43 @@ navLinks.forEach((link) => {
     navMenu.classList.remove("show-menu");
   });
 });
+
+
+// Function to display assignments
+async function displayAssignments() {
+  const assignmentsRef = ref(database, "assignments");
+  try {
+    const snapshot = await get(assignmentsRef);
+    const assignments = snapshot.val();
+    const assignmentContainer = document.querySelector(".assignment-container");
+    assignmentContainer.innerHTML = ""; // Clear existing assignments
+
+    for (let id in assignments) {
+      const assignment = assignments[id];
+      const assignmentElement = document.createElement("div");
+      assignmentElement.className = "assignment-item";
+      assignmentElement.innerHTML = `
+        <h3 class="course-code">${assignment.courseCode}</h3>
+        <p>${assignment.description}</p>
+        <div class="date">${assignment.dueDate}</div>
+      `;
+      assignmentContainer.appendChild(assignmentElement);
+    }
+  } catch (error) {
+    console.error("Error fetching assignments:", error.message);
+    // Handle error
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if user is logged in
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is logged in, fetch and display assignments
+      displayAssignments();
+    } else {
+      // User is not logged in, redirect to login page
+      window.location.href = "login.html";
+    }
+  });
+});
