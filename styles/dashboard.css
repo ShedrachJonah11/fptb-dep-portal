@@ -342,11 +342,12 @@ img {
 }
 
 .enrolled-courses {
-  width: 50rem;
+  width: 50%;
 }
 
 .second-sec .side {
-  max-width: 30rem;
+  width: 40%;
+margin-top: 16px;
 }
 
 .top-text {
@@ -412,6 +413,7 @@ img {
 .side .notification {
   display: flex;
   justify-content: space-between;
+
 }
 
 .side .textCard {

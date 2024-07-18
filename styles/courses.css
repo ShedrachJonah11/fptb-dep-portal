@@ -257,7 +257,7 @@ img {
 }
 
 .enrolled-courses {
-  width: 60%;
+  width: 100%;
 }
 
 .second-sec .side {
@@ -309,7 +309,7 @@ img {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.1rem;
 }
 

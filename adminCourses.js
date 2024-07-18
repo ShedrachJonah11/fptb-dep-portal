@@ -17,17 +17,19 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyAOvjJvw7G_lrYlwxkFFSDOxji1IeqQ2zw",
   authDomain: "authentication-4bf9c.firebaseapp.com",
-  databaseURL: "https://authentication-4bf9c-default-rtdb.firebaseio.com",
   projectId: "authentication-4bf9c",
   storageBucket: "authentication-4bf9c.appspot.com",
   messagingSenderId: "26178407898",
   appId: "1:26178407898:web:475f505e40f724eed844e3",
+  databaseURL: "https://authentication-4bf9c-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+
+let editingCourseId = null;
 
 // Toast function
 function showToast(message, type) {
@@ -67,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelModalButton?.addEventListener("click", () => {
     modal.style.display = "none";
+    editingCourseId = null;
+    addCourseForm.reset();
   });
 
   window.addEventListener("click", (event) => {
@@ -109,29 +113,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const courseClass = event.target.courseClass.value;
 
     try {
-      const coursesRef = ref(database, "courses");
-      const newCourseRef = push(coursesRef);
-      const courseId = newCourseRef.key;
+      if (editingCourseId) {
+        // Update existing course
+        const courseRef = ref(database, `courses/${editingCourseId}`);
+        await update(courseRef, {
+          name: courseName,
+          code: courseCode,
+          credit: courseCredit,
+          students: courseStudents,
+          class: courseClass,
+        });
 
-      await set(newCourseRef, {
-        name: courseName,
-        code: courseCode,
-        credit: courseCredit,
-        students: courseStudents,
-        class: courseClass,
-      });
+        showToast("Course updated successfully!", "success");
+        editingCourseId = null;
+      } else {
+        // Add new course
+        const coursesRef = ref(database, "courses");
+        const newCourseRef = push(coursesRef);
+        const courseId = newCourseRef.key;
 
-      // Add the course to the specified class
-      const classCoursesRef = ref(
-        database,
-        `classes/${courseClass}/courses/${courseId}`
-      );
-      await set(classCoursesRef, true);
+        await set(newCourseRef, {
+          name: courseName,
+          code: courseCode,
+          credit: courseCredit,
+          students: courseStudents,
+          class: courseClass,
+        });
 
-      showToast("Course added successfully!", "success");
+        // Add the course to the specified class
+        const classCoursesRef = ref(
+          database,
+          `classes/${courseClass}/courses/${courseId}`
+        );
+        await set(classCoursesRef, true);
+
+        showToast("Course added successfully!", "success");
+      }
     } catch (error) {
-      console.error("Error adding course: ", error);
-      showToast("Error adding course.", "error");
+      console.error("Error saving course: ", error);
+      showToast("Error saving course.", "error");
     }
 
     document.getElementById("modal").style.display = "none";
@@ -161,10 +181,12 @@ const displayCourses = async () => {
   try {
     const snapshot = await get(coursesRef);
     const courses = snapshot.val();
-    const coursesTableBody = document.getElementById("coursesTableBody");
 
     // Clear any existing table entries
-    coursesTableBody.innerHTML = "";
+    const classes = ["nd1", "nd2", "hnd1", "hnd2"];
+    classes.forEach((classId) => {
+      document.getElementById(`${classId}CoursesTableBody`).innerHTML = "";
+    });
 
     // Iterate over the course objects and create table rows
     for (let courseId in courses) {
@@ -175,9 +197,8 @@ const displayCourses = async () => {
           <td>${course.name}</td>
           <td>${course.credit}</td>
           <td>${course.students}</td>
-          <td>${course.class}</td>
           <td>
-            <div class="menu" data-id="${courseId}">...</div> 
+            <div class="menu" data-id="${courseId}">...</div>
             <div class="modal-menu" id="modal-menu-${courseId}">
               <ul>
                 <li class="modal-edit-course" data-id="${courseId}">Edit Course</li>
@@ -185,16 +206,19 @@ const displayCourses = async () => {
               </ul>
             </div>
           </td>`;
-      coursesTableBody.appendChild(tr);
+      document
+        .getElementById(`${course.class}CoursesTableBody`)
+        .appendChild(tr);
     }
 
     // Add event listeners to menu buttons
-    const menuButtons = document.querySelectorAll('.menu');
-    menuButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
+    const menuButtons = document.querySelectorAll(".menu");
+    menuButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
         const id = event.target.dataset.id;
         const modalMenu = document.getElementById(`modal-menu-${id}`);
-        modalMenu.style.display = modalMenu.style.display === 'block' ? 'none' : 'block';
+        modalMenu.style.display =
+          modalMenu.style.display === "block" ? "none" : "block";
       });
     });
   } catch (error) {
@@ -205,61 +229,44 @@ const displayCourses = async () => {
 
 function editCourse(courseId) {
   const courseRef = ref(database, `courses/${courseId}`);
-  get(courseRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const courseData = snapshot.val();
-      
-      // Populate the modal with current course data
-      document.getElementById("courseName").value = courseData.name;
-      document.getElementById("courseCode").value = courseData.code;
-      document.getElementById("courseCredit").value = courseData.credit;
-      document.getElementById("courseStudents").value = courseData.students;
-      document.getElementById("courseClass").value = courseData.class;
+  get(courseRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const courseData = snapshot.val();
 
-      // Show the modal
-      document.getElementById("modal").style.display = "block";
+        // Populate the modal with current course data
+        document.getElementById("courseName").value = courseData.name;
+        document.getElementById("courseCode").value = courseData.code;
+        document.getElementById("courseCredit").value = courseData.credit;
+        document.getElementById("courseStudents").value = courseData.students;
+        document.getElementById("courseClass").value = courseData.class;
 
-      // Change form submission handler for updating
-      const addCourseForm = document.getElementById("addCourseForm");
-      addCourseForm.onsubmit = async (event) => {
-        event.preventDefault();
+        // Show the modal
+        document.getElementById("modal").style.display = "block";
 
-        const updatedCourse = {
-          name: document.getElementById("courseName").value,
-          code: document.getElementById("courseCode").value,
-          credit: document.getElementById("courseCredit").value,
-          students: document.getElementById("courseStudents").value,
-          class: document.getElementById("courseClass").value,
-        };
-
-        try {
-          await update(courseRef, updatedCourse);
-          showToast("Course updated successfully!", "success");
-          document.getElementById("modal").style.display = "none";
-          displayCourses();
-        } catch (error) {
-          console.error("Error updating course:", error);
-          showToast("Error updating course.", "error");
-        }
-      };
-    } else {
-      showToast("Course not found.", "error");
-    }
-  }).catch((error) => {
-    console.error("Error fetching course:", error);
-    showToast("Error fetching course.", "error");
-  });
+        // Set the editingCourseId to the current course ID
+        editingCourseId = courseId;
+      } else {
+        showToast("Course not found.", "error");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching course:", error);
+      showToast("Error fetching course.", "error");
+    });
 }
 
 function deleteCourse(courseId) {
   if (confirm("Are you sure you want to delete this course?")) {
     const courseRef = ref(database, `courses/${courseId}`);
-    remove(courseRef).then(() => {
-      showToast("Course deleted successfully!", "success");
-      displayCourses();
-    }).catch((error) => {
-      console.error("Error deleting course:", error);
-      showToast("Error deleting course.", "error");
-    });
+    remove(courseRef)
+      .then(() => {
+        showToast("Course deleted successfully!", "success");
+        displayCourses();
+      })
+      .catch((error) => {
+        console.error("Error deleting course:", error);
+        showToast("Error deleting course.", "error");
+      });
   }
 }

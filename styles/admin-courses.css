@@ -18,7 +18,12 @@ body {
   width: 250px;
   display: flex;
   flex-direction: column;
+  position: fixed; /* Make the sidebar fixed */
+  height: 100%; /* Full height */
+  top: 0;
+  left: 0;
   transition: transform 0.3s ease;
+  overflow-y: auto; /* Add scroll to sidebar if content overflows */
 }
 
 .sidebar-logo {
@@ -72,70 +77,6 @@ body {
   margin-right: 10px;
 }
 
-.users-table {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.table-responsive {
-  overflow-x: auto;
-}
-
-.users-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.users-table th,
-.users-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.users-table tbody tr:hover {
-  background-color: #f9f9f9;
-}
-
-.modal-menu {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  right: 10px;
-}
-
-.menu {
-  cursor: pointer;
-}
-
-.modal-menu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.modal-menu li {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  cursor: pointer;
-}
-
-.modal-menu li:hover {
-  background-color: #f1f1f1;
-}
-
-/* Position the modal-menu relative to the action-button */
-.action-button {
-  cursor: pointer;
-  position: relative;
-}
-
 .sidebar-actions a {
   color: #fff;
   text-decoration: none;
@@ -146,6 +87,7 @@ body {
 .main-content {
   padding: 20px;
   flex-grow: 1;
+  margin-left: 250px; /* Add margin to prevent overlapping with sidebar */
 }
 
 .main-content header {
@@ -185,6 +127,75 @@ body {
   height: 3px;
   background-color: #333;
   margin: 4px 0;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.courses-section {
+  margin-bottom: 20px;
+}
+
+.courses-section h3 {
+  background-color: #004400;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.courses-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.courses-section th,
+.courses-section td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.courses-section th {
+  background-color: #006600;
+  color: #fff;
+}
+
+.courses-section tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.action-button {
+  cursor: pointer;
+  position: relative;
+}
+
+.modal-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 10px;
+}
+
+.modal-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-menu li {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.modal-menu li:hover {
+  background-color: #f1f1f1;
 }
 
 /* Modal Styles */
@@ -302,6 +313,7 @@ body {
 /* Wrap the select tag in a div with a class name of select-wrapper */
 
 /* Responsive Styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;
@@ -320,6 +332,7 @@ body {
 
   .main-content {
     order: 1;
+    margin-left: 0;
   }
 
   .hamburger {
@@ -335,8 +348,13 @@ body {
     width: 92%;
     margin-bottom: 20px;
   }
+
   .head-row button {
     width: 50%;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
   }
 }
 
@@ -349,8 +367,12 @@ body {
     padding: 15px;
   }
 
-  .users-table th,
-  .users-table td {
+  .courses-section th,
+  .courses-section td {
     padding: 8px;
+  }
+
+  .head-row button {
+    width: 100%;
   }
 }
