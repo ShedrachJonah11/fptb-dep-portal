@@ -2,16 +2,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Anton", sans-serif;
-  font-family: "Inter", sans-serif;
-  font-family: "Montserrat", sans-serif;
-  font-family: "Open Sans", sans-serif;
-  font-family: "Roboto", sans-serif;
-  font-family: "Unica One", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
+
 body {
   background-repeat: no-repeat;
-  background-size: 100% 75vh;
+  background-size: 100% 85vh;
   background-blend-mode: overlay;
   transition: background-image 1s ease; /* Add smooth transition */
 }
@@ -23,7 +19,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 75vh;
+  height: 85vh;
   z-index: 20;
 }
 main {
@@ -140,14 +136,12 @@ button {
 .section_one div > p {
   color: #dcdbdb;
   font-size: 1.3rem;
-  font-family: "Montserrat", sans-serif;
 }
 h1 {
   font-size: 4.5rem;
   line-height: 6rem;
   text-align: center;
   color: white;
-  font-family: "Montserrat", sans-serif;
 }
 section > div,
 footer div {
@@ -399,11 +393,11 @@ footer ul {
 .cursor {
   cursor: pointer;
 }
-.Admmission_sec_text p,
-h2 {
-  font-weight: 300;
-  padding: 1.2rem;
-  font-family: "Montserrat", sans-serif;
+.Admmission_sec_text p {
+  font-weight: 200;
+  padding: 1.4rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 .flex {
   display: flex;
@@ -464,6 +458,13 @@ h2 {
   font-size: 0.9rem;
 }
 
+.Admission_process {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 7rem 0;
+  gap: 5rem;
+}
 #text-step p {
   padding: 10px 0;
   line-height: 2rem;
@@ -472,15 +473,9 @@ h2 {
 .list p {
   line-height: 2rem;
 }
-.Admission_process {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 7rem 0;
-  gap: 5rem;
-}
 .first_sec {
   background: #033f03;
+  justify-content: center;
   width: fit;
 }
 .first_sec {
@@ -643,13 +638,7 @@ h2 {
     justify-content: center;
     padding: 2rem 0;
   }
-  .Admission_process {
-    flex-direction: column;
-    align-items: center;
-  }
-  .Admission_process section {
-    margin-top: 20px;
-  }
+
   .q_lg {
     text-align: center;
   }
@@ -667,11 +656,7 @@ h2 {
     display: flex;
     justify-content: center;
   }
-  .Admission_process h1 {
-    align-items: center;
-    text-align: center;
-    margin-left: 0;
-  }
+
   .desp {
     padding: 0;
     margin: 0;
@@ -695,6 +680,19 @@ h2 {
     gap: 25px;
   }
 
+  .section_one h1 {
+    font-size: 2.8rem;
+    line-height: 3.3rem;
+  }
+
+  .graduate-img {
+    display: none;
+  }
+
+  .Admmission_sec_text span h2 {
+    font-size: xx-large;
+  }
+
   .description p {
     line-height: 2rem;
   }
@@ -707,6 +705,24 @@ h2 {
   }
   .section_5 .description {
     flex-direction: column-reverse;
+  }
+
+  .footer_container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer_lists {
+    width: 100%; /* Take full width of the container */
+    max-width: none; /* Remove max-width */
+  }
+  .footer_lists ul li {
+    justify-content: center; /* Center items if column flex is active */
+  }
+  .footer_bottom {
+    gap: 10px;
+  }
+  .social_links img {
+    width: 24px; /* Increase icon size for better accessibility */
   }
   nav {
     position: absolute;
@@ -792,12 +808,7 @@ h2 {
     display: flex;
     justify-content: center;
   }
-  .Admission_process {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-  }
+
   .small-img {
     height: 5rem;
     margin: 0;
@@ -817,19 +828,17 @@ h2 {
   }
   /* Container for the image */
   .About .image-container {
-    width: 23rem; /* or any width you want for the container */
-    height: auto; /* or set a specific height if needed */
+    padding: 20px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    float: left; /* Float the container to the left */
   }
 
   /* Styling for the image itself */
   .About .image-container img {
-    width: 100%; /* Image will occupy the full width of the container */
-    height: auto; /* Keep the aspect ratio */
-    /* Remove display flex, and justify-content, align-items from here */
+    width: 100%;
+    height: auto;
   }
   #add_2 {
     width: 24rem;
@@ -838,22 +847,55 @@ h2 {
   .desp {
     display: none;
   }
+
+  .Admission_process {
+    flex-direction: column;
+    padding: 3rem 1rem; /* Reduce padding for small screens */
+    gap: 1rem;
+  }
+
+  .Admission_process .top-image {
+    display: none;
+  }
+
+  /* Adjust list container */
+  .Admission_process .list {
+    width: auto; /* Let the content dictate the width */
+    padding: 0 1rem; /* Add some padding around the content */
+  }
+
+  /* Make sections stack vertically */
+  .Admission_process section {
+    flex-direction: column;
+    text-align: center; /* Center text for small screens */
+  }
+
+  /* Adjust image settings */
+  .Admission_process section img {
+    margin-bottom: 1rem; /* Add space below image */
+  }
+
+  /* Adjust heading sizes for better readability on small devices */
+  .Admission_process h1 {
+    font-size: 1.5rem; /* Increase base font size */
+    line-height: 1.1;
+  }
+  .Admission_process span h3 {
+    font-size: 1.25rem; /* Adjust h3 size accordingly */
+  }
+
+  /* Adjust margin of span in .list on small devices */
+  .Admission_process .list span {
+    margin: 1rem 0;
+  }
 }
 @media only screen and (max-width: 400px) {
-  .footer_container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer_container ul {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  footer {
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
   .footer_bottom {
-    text-align: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 5px;
   }
 
   .first_sec {
@@ -863,7 +905,4 @@ h2 {
   #para {
     text-align: center;
   }
-}
-
-@media only screen and (max-width: 600px) {
 }
