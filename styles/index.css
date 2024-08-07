@@ -17,7 +17,7 @@ body {
 }
 
 .overlay {
-  backdrop-filter: brightness(50%);
+  backdrop-filter: brightness(45%);
   background-size: contain;
   position: absolute;
   top: 0;
@@ -53,7 +53,7 @@ main {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -98,14 +98,17 @@ button {
   display: inline-flex;
   gap: 7px;
   align-items: center;
-  padding: 10px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding: 18px;
   border: 0;
   background: #033f03;
   color: white;
   border-radius: 5px;
 }
+
+.signup_btn:hover {
+  background: #074e07;
+}
+
 .signup_btn a {
   color: white;
   text-decoration: none;
@@ -115,11 +118,7 @@ button {
   height: 10px;
 }
 .badge {
-  position: absolute;
-  right: 0;
-  top: 20px;
   width: 110px;
-  z-index: 100;
 }
 .section {
   padding-top: 32px;
@@ -140,12 +139,15 @@ button {
 }
 .section_one div > p {
   color: #dcdbdb;
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
 }
 h1 {
-  font-size: 3.5rem;
-  line-height: 4rem;
+  font-size: 4.5rem;
+  line-height: 6rem;
   text-align: center;
   color: white;
+  font-family: "Montserrat", sans-serif;
 }
 section > div,
 footer div {
@@ -360,7 +362,7 @@ footer ul {
   color: black;
 }
 .active_nav .nav_btns {
-  justify-content: center;
+  justify-content: space-between;
 }
 .active_nav .badge {
   width: 100px;
@@ -377,19 +379,20 @@ footer ul {
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  margin-left: 6rem;
+  padding: 1.5rem;
+  margin-left: 5rem;
 }
 .Admmission_sec {
   background: #033f03;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 15rem;
+  gap: 10rem;
 }
 .Admmission_sec_text span h2 {
-  font-size: 1.4rem;
+  font-size: 3rem;
   color: white;
+  font-weight: 600;
   padding: 1rem;
 }
 
@@ -398,8 +401,9 @@ footer ul {
 }
 .Admmission_sec_text p,
 h2 {
-  font-weight: 200;
-  padding: 1rem;
+  font-weight: 300;
+  padding: 1.2rem;
+  font-family: "Montserrat", sans-serif;
 }
 .flex {
   display: flex;
@@ -409,10 +413,14 @@ h2 {
 }
 .flex button {
   background-color: #fb3636;
-  padding: 0.8rem;
+  padding: 1.2rem;
   border-radius: 2px;
   border: none;
   color: white;
+}
+.flex a {
+  text-decoration: none;
+  color: #fff;
 }
 .flex p {
   cursor: pointer;
@@ -425,24 +433,30 @@ h2 {
 .Admission_process section {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .Admission_process .list {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  width: 700px;
   gap: 1rem;
 }
 .Admission_process .list span {
   margin: 2rem 0 0 0;
 }
+
 .Admission_process h1 {
   color: #033f03;
   font-size: 1rem;
-  line-height: 2rem;
-  font-weight: 600;
-  font-size: 1.5rem;
+  line-height: 1rem;
+  font-weight: 400;
+  font-size: 1rem;
   text-align: left;
-  margin-left: 5rem;
+}
+
+.Admission_process span h3 {
+  font-size: 2rem;
 }
 
 .Admission_process #light {
@@ -495,6 +509,7 @@ h2 {
 
 .q_lg {
   text-align: left;
+  font-size: 3rem;
 }
 .first_sec a {
   color: white;
@@ -526,12 +541,13 @@ h2 {
   width: 18rem;
 }
 .About h5 {
-  font-size: 1rem;
+  font-size: 1.7rem;
   line-height: 1;
   font-weight: 700;
 }
 .About h4 {
   font-weight: 600;
+  font-size: 1.2rem;
 }
 .About .text {
   line-height: 3;
@@ -564,11 +580,14 @@ h2 {
 .desp section p {
   width: 17rem;
   margin: 0 auto;
+  font-size: 1rem;
   text-align: center;
 }
 
-.desp section h4 {
+.desp section h2 {
   text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 @media (max-width: 1120px) {
@@ -583,7 +602,7 @@ h2 {
   }
 
   .desp h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 }
 @media (max-width: 978px) {
@@ -796,22 +815,22 @@ h2 {
   .active_nav {
     width: 100%;
   }
-/* Container for the image */
-.About .image-container {
-  width: 23rem; /* or any width you want for the container */
-  height: auto; /* or set a specific height if needed */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  float: left; /* Float the container to the left */
-}
+  /* Container for the image */
+  .About .image-container {
+    width: 23rem; /* or any width you want for the container */
+    height: auto; /* or set a specific height if needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left; /* Float the container to the left */
+  }
 
-/* Styling for the image itself */
-.About .image-container img {
-  width: 100%; /* Image will occupy the full width of the container */
-  height: auto; /* Keep the aspect ratio */
-  /* Remove display flex, and justify-content, align-items from here */
-}
+  /* Styling for the image itself */
+  .About .image-container img {
+    width: 100%; /* Image will occupy the full width of the container */
+    height: auto; /* Keep the aspect ratio */
+    /* Remove display flex, and justify-content, align-items from here */
+  }
   #add_2 {
     width: 24rem;
   }
@@ -844,7 +863,7 @@ h2 {
   #para {
     text-align: center;
   }
-  
 }
 
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
