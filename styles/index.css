@@ -137,6 +137,19 @@ button {
   color: #dcdbdb;
   font-size: 1.3rem;
 }
+
+.learn-more a {
+  text-decoration: none;
+  color: #000;
+}
+
+.learn-more {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 4.5rem;
   line-height: 6rem;
@@ -285,7 +298,7 @@ footer ul {
 .footer_lists {
   padding-left: 0px;
   padding-right: 0px;
-  max-width: 220px;
+  /* max-width: 220px; */
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -515,8 +528,9 @@ footer ul {
   margin-left: 5rem;
 }
 .latest_events {
-  display: flex;
-  align-items: center;
+  padding-left: 10rem;
+  /* display: flex; */
+  /* align-items: center; */
   justify-content: space-around;
 }
 
@@ -601,6 +615,9 @@ footer ul {
   }
 }
 @media (max-width: 978px) {
+  .learn-more {
+    justify-content: center;
+  }
   .card_container {
     flex-direction: column;
     justify-content: center;
@@ -641,10 +658,13 @@ footer ul {
 
   .q_lg {
     text-align: center;
+    font-size: 2rem;
   }
   .first_sec #para {
     align-items: center;
     text-align: center;
+    font-size: 1rem;
+    padding: 10px;
   }
   .first_sec {
     padding: 0;
@@ -715,9 +735,7 @@ footer ul {
     width: 100%; /* Take full width of the container */
     max-width: none; /* Remove max-width */
   }
-  .footer_lists ul li {
-    justify-content: center; /* Center items if column flex is active */
-  }
+
   .footer_bottom {
     gap: 10px;
   }
@@ -799,7 +817,6 @@ footer ul {
 
   .latest_events {
     display: flex;
-    justify-content: center;
     gap: 0;
     padding: 0;
     margin: 0;
@@ -895,7 +912,7 @@ footer ul {
     padding-bottom: 20px;
   }
   .footer_bottom {
-    gap: 5px;
+    gap: 10px;
   }
 
   .first_sec {
@@ -905,4 +922,8 @@ footer ul {
   #para {
     text-align: center;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
